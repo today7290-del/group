@@ -5,8 +5,9 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  ;
   // 1. 5가지 공동체 사랑 유형 데이터 정의
-  const TYPES = {
+  const TYPES = [
     격려형: {
       id: 'ENCOURAGE',
       name: '격려형',
@@ -154,8 +155,8 @@ document.addEventListener('DOMContentLoaded', () => {
         '따뜻한 표정과 반응으로 나를 반겨주고 마음을 표현해 주세요.',
       ],
       weeklyAction: '"이번 주 만나는 사람에게 먼저 미소로 인사하고, 상대가 편안해하는 방식으로 따뜻함을 표현하기"'
-    }
-   ];
+    },
+  ];
 
   // 2. 30개 문항 데이터셋 (Q1 ~ Q30) 및 채점표 매핑
   const QUESTIONS = [
