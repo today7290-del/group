@@ -193,11 +193,11 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: 7,
       optA: { text: "나를 위해 시간을 비워주는 것이 가장 감동이다.", type: '동행형' },
-      optB: { text: "마임이 담긴 작은 선물과 메모가 가장 감동이다.", type: '마음형' }
+      optB: { text: "마음이 담긴 작은 선물과 메모가 가장 감동이다.", type: '마음형' }
     },
     {
       id: 8,
-      optA: { text: "함께 기도하며 손을 맞잡는 시간이 좋다.", type: '친밀형' },
+      optA: { text: "밝게 웃으며 박수치고 함께 기뻐하는 시간이 좋다.", type: '친밀형' },
       optB: { text: "함께 커피를 마시며 이야기하는 시간이 좋다.", type: '동행형' }
     },
     {
@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: 12,
-      optA: { text: "부탁하지 않아도 먼저 도와주는 사람이 좋다.", type: '실천형' },
+      optA: { text: "부탁하지 않아도 알아서 도와줄 때 기쁘다.", type: '실천형' },
       optB: { text: "특별한 날이 아니어도 작은 선물을 받으면 기쁘다.", type: '마음형' }
     },
     {
@@ -227,17 +227,17 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: 14,
-      optA: { text: "힘들 때 격려와 인정은 사람을 변화시킨다고 생각한다.", type: '격려형' },
-      optB: { text: "힘들 때 도와주는 행동이 신뢰를 준다.", type: '실천형' }
+      optA: { text: "힘들 때 격려와 응원의 말은 힘이 된다.", type: '격려형' },
+      optB: { text: "힘들 때 도와주는 행동은 힘이 된다.", type: '실천형' }
     },
     {
       id: 15,
       optA: { text: "누군가 나를 위해 준비한 선물이 기억에 남는다.", type: '마음형' },
-      optB: { text: "환하게 웃어주며 반갑게 환영해주는 인사가 기억에 남는다.", type: '친밀형' }
+      optB: { text: "환하게 웃어주며 나를 반갑게 환영해주는 인사가 기억에 남는다.", type: '친밀형' }
     },
     {
       id: 16,
-      optA: { text: "함께 있는 것만으로도 위로가 된다.", type: '동행형' },
+      optA: { text: "시간을 내어 함께 해줄때 사랑받는다고 느낀다.", type: '동행형' },
       optB: { text: "인정과 칭찬을 받을 때 사랑받는다고 느낀다.", type: '격려형' }
     },
     {
@@ -247,18 +247,18 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: 18,
-      optA: { text: "악수나 하이파이브처럼 자연스러운 인사가 좋다.", type: '친밀형' },
+      optA: { text: "악수나 하이파이브처럼 자연스러운 스킨십이 좋다.", type: '친밀형' },
       optB: { text: "필요한 시간을 함께 보내주는 것이 좋다.", type: '동행형' }
     },
     {
       id: 19,
-      optA: { text: "진심 어린 격려가 나를 성장시킨다.", type: '격려형' },
+      optA: { text: "진심 어린 격려의 말을 해주는 사람이 좋다.", type: '격려형' },
       optB: { text: "작은 배려를 행동으로 보여주는 사람이 좋다.", type: '실천형' }
     },
     {
       id: 20,
       optA: { text: "예상하지 못한 작은 선물이 기쁘다.", type: '마음형' },
-      optB: { text: "따뜻하게 안아주는 것이 더 큰 위로가 된다.", type: '친밀형' }
+      optB: { text: "따뜻하게 안아주며 맞아주는 것이 기쁘다.", type: '친밀형' }
     },
     {
       id: 21,
@@ -267,17 +267,17 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: 22,
-      optA: { text: "힘든 일을 함께 나누어 주는 사람이 좋다.", type: '실천형' },
+      optA: { text: "힘든 일을 함께 나누어 도와주는 사람이 좋다.", type: '실천형' },
       optB: { text: "손편지처럼 마음을 담아서 표현해주는 사람이 좋다.", type: '마음형' }
     },
     {
       id: 23,
-      optA: { text: "환하게 웃으며 하이파이브하며 손 잡아줄때 힘이 복돋는다.", type: '친밀형' },
+      optA: { text: "환하게 웃으며 하이파이브하며 손 잡아줄때 힘이 난다.", type: '친밀형' },
       optB: { text: "누군가 나를 위해 시간을 내주는 것에 힘이 난다.", type: '동행형' }
     },
     {
       id: 24,
-      optA: { text: "인정받으면 더 열심히 하고 싶어진다.", type: '격려형' },
+      optA: { text: "인정과 칭찬의 말을 해준 사람이 더 기억에 남는다.", type: '격려형' },
       optB: { text: "먼저 도와주는 사람이 더 기억에 남는다.", type: '실천형' }
     },
     {
@@ -292,8 +292,8 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: 27,
-      optA: { text: "행동으로 보여주는 사랑이 가장 진실하다고 생각한다.", type: '실천형' },
-      optB: { text: "나를 위해 준비한 작은 정성(선물)이 가장 기억에 남는다.", type: '마음형' }
+      optA: { text: "나를 위한 행동이 가장 기억에 남는다.", type: '실천형' },
+      optB: { text: "마음을 담아 준비한 작은 정성(선물)이 가장 기억에 남는다.", type: '마음형' }
     },
     {
       id: 28,
@@ -303,7 +303,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: 29,
       optA: { text: "힘들 때 진심이 담긴 응원과 격려가 힘이 된다.", type: '격려형' },
-      optB: { text: "말없이 도와주는 사람이 더 든든하다.", type: '실천형' }
+      optB: { text: "힘들 때 말없이 도와줄 때 힘이 된다.", type: '실천형' }
     },
     {
       id: 30,
