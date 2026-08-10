@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
         '나를 생각하며 준비한 마음이 느껴질 때'
       ],
       love: [
-        '나를 기억하고 있다는 마음을 작은 정성으로 표현해주세요.'
+        '나를 기억하고 있다는 마음을 작은 정성(선물, 편지 등)으로 표현해주세요.'
       ],
       weeklyAction: '이번 주 한 사람을 생각하며 작은 메모, 간식, 또는 정성 어린 것을 준비해 전하기'
     },
@@ -163,37 +163,37 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: 1,
       optA: { text: "진심 어린 격려를 들으면 오래 힘이 된다.", type: '격려형' },
-      optB: { text: "함께 시간을 보내준 것이 더 오래 기억난다.", type: '동행형' }
+      optB: { text: "함께 시간을 보내준 것이 오래 힘이 된다.", type: '동행형' }
     },
     {
       id: 2,
-      optA: { text: "실제로 도와주는 행동이 가장 고맙다.", type: '실천형' },
-      optB: { text: "나를 생각하며 준비한 작은 선물이 더 감동이다.", type: '마음형' }
+      optA: { text: "나를 생각하며 실제로 도와주는 행동이 가장 고맙다.", type: '실천형' },
+      optB: { text: "나를 생각하며 준비한 작은 선물과 손편지가 가장 고맙다.", type: '마음형' }
     },
     {
       id: 3,
       optA: { text: "반갑게 악수하거나 포옹하며 인사하면 친밀감을 느낀다.", type: '친밀형' },
-      optB: { text: "진심 어린 칭찬 한마디가 더 힘이 된다.", type: '격려형' }
+      optB: { text: "진심 어린 안부와 인사 한마디에서 친밀감을 느낀다.", type: '격려형' }
     },
     {
       id: 4,
-      optA: { text: "함께 식사하거나 산책하는 시간이 가장 좋다.", type: '동행형' },
-      optB: { text: "말없이 도와주는 사람이 더 믿음직하다.", type: '실천형' }
+      optA: { text: "함께 식사하거나 산책할 때 마음이 가고 힘을 얻는다.", type: '동행형' },
+      optB: { text: "말없이 도와줄 때 마음이 가고 힘을 얻는다.", type: '실천형' }
     },
     {
       id: 5,
-      optA: { text: "작은 편지나 메모를 받으면 오래 간직한다.", type: '마음형' },
-      optB: { text: "따뜻한 포옹이나 악수가 더 큰 위로가 된다.", type: '친밀형' }
+      optA: { text: "힘든날, 작은 편지나 선물을 받으면 위로가 된다.", type: '마음형' },
+      optB: { text: "힘든날, 따뜻한 포옹이나 토닥임이 위로가 된다.", type: '친밀형' }
     },
     {
       id: 6,
       optA: { text: "격려받으면 다시 도전할 용기가 생긴다.", type: '격려형' },
-      optB: { text: "힘든 일을 함께해 주는 사람이 더 고맙다.", type: '실천형' }
+      optB: { text: "힘든 일을 함께해 줄 때 힘이 생긴다.", type: '실천형' }
     },
     {
       id: 7,
       optA: { text: "나를 위해 시간을 비워주는 것이 가장 감동이다.", type: '동행형' },
-      optB: { text: "작은 선물에도 담긴 마음이 크게 느껴진다.", type: '마음형' }
+      optB: { text: "마임이 담긴 작은 선물과 메모가 가장 감동이다.", type: '마음형' }
     },
     {
       id: 8,
@@ -202,18 +202,18 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: 9,
-      optA: { text: "행동으로 보여주는 배려가 더 진심이라고 느낀다.", type: '실천형' },
+      optA: { text: "행동으로 보여주는 배려가 더 큰 힘이 된다.", type: '실천형' },
       optB: { text: "칭찬과 인정의 말이 더 큰 힘이 된다.", type: '격려형' }
     },
     {
       id: 10,
-      optA: { text: "나를 기억하며 준비한 작은 선물이 감동이다.", type: '마음형' },
-      optB: { text: "자연스러운 스킨십이 관계를 가깝게 만든다.", type: '친밀형' }
+      optA: { text: "나를 기억하며 준비한 작은 선물에서 친밀감을 느낀다.", type: '마음형' },
+      optB: { text: "나에게 눈을 맞추며 따뜻한 미소를 보낼 때 친밀감을 느낀다.", type: '친밀형' }
     },
     {
       id: 11,
       optA: { text: "끝까지 이야기를 들어주는 사람이 좋다.", type: '동행형' },
-      optB: { text: '"잘했어요."라는 말을 들으면 힘이 난다.', type: '격려형' }
+      optB: { text: '"잘했어요."등의 긍정적인 말을 해주는 사람이 좋다.', type: '격려형' }
     },
     {
       id: 12,
@@ -222,18 +222,18 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: 13,
-      optA: { text: "따뜻한 손길이 위로가 된다.", type: '친밀형' },
-      optB: { text: "함께 시간을 보내는 것이 사랑이라고 느낀다.", type: '동행형' }
+      optA: { text: "따뜻한 눈인사와 미소, 손길이 위로가 된다.", type: '친밀형' },
+      optB: { text: "함께 시간을 보내는 것이 위로가 된다.", type: '동행형' }
     },
     {
       id: 14,
-      optA: { text: "격려와 인정은 사람을 변화시킨다고 생각한다.", type: '격려형' },
-      optB: { text: "말보다 행동이 더 신뢰를 준다.", type: '실천형' }
+      optA: { text: "힘들 때 격려와 인정은 사람을 변화시킨다고 생각한다.", type: '격려형' },
+      optB: { text: "힘들 때 도와주는 행동이 신뢰를 준다.", type: '실천형' }
     },
     {
       id: 15,
       optA: { text: "누군가 나를 위해 준비한 선물이 기억에 남는다.", type: '마음형' },
-      optB: { text: "반갑게 맞아주는 인사가 더 기억에 남는다.", type: '친밀형' }
+      optB: { text: "환하게 웃어주며 반갑게 환영해주는 인사가 기억에 남는다.", type: '친밀형' }
     },
     {
       id: 16,
@@ -243,11 +243,11 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: 17,
       optA: { text: "실제로 도움을 받으면 마음이 열린다.", type: '실천형' },
-      optB: { text: "나를 생각한 작은 선물이 더 감동이다.", type: '마음형' }
+      optB: { text: "나를 생각한 작은 선물에 마음이 열린다.", type: '마음형' }
     },
     {
       id: 18,
-      optA: { text: "악수나 하이파이브처럼 자연스러운 신체 접촉이 좋다.", type: '친밀형' },
+      optA: { text: "악수나 하이파이브처럼 자연스러운 인사가 좋다.", type: '친밀형' },
       optB: { text: "필요한 시간을 함께 보내주는 것이 좋다.", type: '동행형' }
     },
     {
@@ -268,12 +268,12 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: 22,
       optA: { text: "힘든 일을 함께 나누어 주는 사람이 좋다.", type: '실천형' },
-      optB: { text: "손편지처럼 마음을 담은 표현이 좋다.", type: '마음형' }
+      optB: { text: "손편지처럼 마음을 담아서 표현해주는 사람이 좋다.", type: '마음형' }
     },
     {
       id: 23,
-      optA: { text: "함께 기도하며 손을 잡는 시간이 의미 있다.", type: '친밀형' },
-      optB: { text: "누군가 나를 위해 시간을 내주는 것이 더 의미 있다.", type: '동행형' }
+      optA: { text: "환하게 웃으며 하이파이브하며 손 잡아줄때 힘이 복돋는다.", type: '친밀형' },
+      optB: { text: "누군가 나를 위해 시간을 내주는 것에 힘이 난다.", type: '동행형' }
     },
     {
       id: 24,
@@ -283,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: 25,
       optA: { text: "여행에서 받은 작은 기념품도 오래 간직한다.", type: '마음형' },
-      optB: { text: "따뜻하게 등을 토닥여 주는 위로가 좋다.", type: '친밀형' }
+      optB: { text: "따뜻하게 등을 토닥여 주는 위로가 기억에 오래 남는다.", type: '친밀형' }
     },
     {
       id: 26,
@@ -293,7 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: 27,
       optA: { text: "행동으로 보여주는 사랑이 가장 진실하다고 생각한다.", type: '실천형' },
-      optB: { text: "나를 위해 준비한 작은 정성이 가장 기억에 남는다.", type: '마음형' }
+      optB: { text: "나를 위해 준비한 작은 정성(선물)이 가장 기억에 남는다.", type: '마음형' }
     },
     {
       id: 28,
@@ -302,13 +302,13 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: 29,
-      optA: { text: "칭찬보다 진심이 담긴 격려가 좋다.", type: '격려형' },
+      optA: { text: "힘들 때 진심이 담긴 응원과 격려가 힘이 된다.", type: '격려형' },
       optB: { text: "말없이 도와주는 사람이 더 든든하다.", type: '실천형' }
     },
     {
       id: 30,
-      optA: { text: "작은 선물보다 중요한 것은 마음이라고 생각한다.", type: '마음형' },
-      optB: { text: "따뜻한 포옹이 말보다 더 큰 위로가 될 때가 있다.", type: '친밀형' }
+      optA: { text: "마음을 담아 좋아할만한 간식이나 작은 것을 챙겨줄때 위로 받는다.", type: '마음형' },
+      optB: { text: "따뜻한 포옹이나 토닥임이 말보다 더 큰 위로가 될 때가 있다.", type: '친밀형' }
     }
   ];
 
