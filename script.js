@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
       love: [
         '나와 함께 시간을 보내고, 내가 하는 이야기에 관심을 가져주세요.'
       ],
-      weeklyAction: '"이번 주 한 사람에게 먼저 시간을 내어 함께 식사하거나 차를 마시자고 제안하기"'
+      weeklyAction: '이번 주 한 사람에게 먼저 시간을 내어 함께 식사하거나 차를 마시자고 제안하기'
     },
 
     '실천형': {
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
       love: [
         '말뿐 아니라 실제적인 행동으로 나를 도와주세요',
       ],
-      weeklyAction: '"이번 주 누군가에게 "무엇을 도와드릴까요?"라고 먼저 묻고 한 가지 행동으로 돕기"'
+      weeklyAction: '이번 주 누군가에게 "무엇을 도와드릴까요?"라고 먼저 묻고 한 가지 행동으로 돕기'
     },
 
     '마음형': {
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
       love: [
         '나를 기억하고 있다는 마음을 작은 정성으로 표현해주세요.'
       ],
-      weeklyAction: '"이번 주 한 사람을 생각하며 작은 메모, 간식, 또는 정성 어린 것을 준비해 전하기"'
+      weeklyAction: '이번 주 한 사람을 생각하며 작은 메모, 간식, 또는 정성 어린 것을 준비해 전하기'
     },
 
     '친밀형': {
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
       love: [
         '따뜻한 표정과 반응으로 나를 반겨주고 마음을 표현해 주세요.',
       ],
-      weeklyAction: '"이번 주 만나는 사람에게 먼저 미소로 인사하고, 상대가 편안해하는 방식으로 따뜻함을 표현하기"'
+      weeklyAction: '이번 주 만나는 사람에게 먼저 미소로 인사하고, 상대가 편안해하는 방식으로 따뜻함을 표현하기'
     }
   };
 
