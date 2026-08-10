@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   ;
   // 1. 5가지 공동체 사랑 유형 데이터 정의
-  const TYPES = [
-    격려형: {
+  const TYPES = {
+    '격려형': {
       id: 'ENCOURAGE',
       name: '격려형',
       title: '① 격려형',
@@ -22,14 +22,14 @@ document.addEventListener('DOMContentLoaded', () => {
         '말 한마디에 담긴 마음을 잘 느낍니다.'
       ],
       cautions: [
-        '무심한 말이나 비판적인 말을 오래 마음에 담아둘 수 있습니다.
-        '말로 표현하지 않으면 상대가 자신을 소중하게 여기지 않는다고 느낄 수 있습니다.'
+        '무심한 말이나 비판적인 말을 오래 마음에 담아둘 수 있습니다.',
+        '말로 표현하지 않으면 상대가 자신을 소중하게 여기지 않는다고 느낄 수 있습니다.',
         '상대의 말에 너무 큰 의미를 부여하지 않도록 주의할 필요가 있습니다.'
       ],
       community: [
-        '"수고했어요."
-        '"당신이 있어서 참 좋아요."'
-        '"잘하고 있어요."'
+        '"수고했어요."',
+        '"당신이 있어서 참 좋아요."',
+        '"잘하고 있어요."',
         '누군가 나의 장점을 알아주었을 때'
       ],
       love: [
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
       weeklyAction: '"이번 주 한 사람에게 구체적인 칭찬이나 격려의 말을 먼저 전해보기"'
     },
 
-    동행형: {
+    '동행형': {
       id: 'COMPANION',
       name: '동행형',
       title: '② 동행형',
@@ -53,22 +53,22 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
       cautions: [
         '함께하지 못하는 것을 사랑이 부족한 것으로 오해할 수 있습니다.',
-        '상대가 바쁘거나 혼자 있을 시간이 필요한 것을 개인적인 거절로 받아들이지 않도록 주의할 필요가 있습니다.'
+        '상대가 바쁘거나 혼자 있을 시간이 필요한 것을 개인적인 거절로 받아들이지 않도록 주의할 필요가 있습니다.',
         '관계에 지나치게 많은 시간과 에너지를 사용하지 않도록 자신의 경계도 돌봐야 합니다.'
       ],
       community: [
         '함께 식사할 때',
         '나의 이야기를 충분히 들어줄 때',
-        '함께 산책하거나 차를 마실 때'
+        '함께 산책하거나 차를 마실 때',
         '바쁜 중에도 나를 위해 시간을 내어줄 때'
-      ]
-       love: [
+      ],
+      love: [
         '나와 함께 시간을 보내고, 내가 하는 이야기에 관심을 가져주세요.'
       ],
       weeklyAction: '"이번 주 한 사람에게 먼저 시간을 내어 함께 식사하거나 차를 마시자고 제안하기"'
     },
 
-    실천형: {
+    '실천형': {
       id: 'ACTION',
       name: '실천형',
       title: '③ 실천형',
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
       cautions: [
         '도움을 받지 못하면 관심이 없다고 느낄 수있습니다.',
-        '말이나 마음으로 표현하는 사랑의 가치를 작게 생각할 수 있습니다.'
+        '말이나 마음으로 표현하는 사랑의 가치를 작게 생각할 수 있습니다.',
         '상대가 도와주지 못하는 상황을 사랑의 부족으로 해석하지 않도록 주의할 필요가 있습니다'
       ],
       community: [
@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
       weeklyAction: '"이번 주 누군가에게 "무엇을 도와드릴까요?"라고 먼저 묻고 한 가지 행동으로 돕기"'
     },
 
-    마음형: {
+    '마음형': {
       id: 'HEART',
       name: '마음형',
       title: '④ 마음형',
@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
       weeklyAction: '"이번 주 한 사람을 생각하며 작은 메모, 간식, 또는 정성 어린 것을 준비해 전하기"'
     },
 
-    친밀형: {
+    '친밀형': {
       id: 'INTIMATE',
       name: '친밀형',
       title: '⑤ 친밀형',
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
       cautions: [
         '사람마다 편안하게 느끼는 거리와 표현 방식이 다르다는 점을 존중해야 합니다.',
-        '내가 편안하게 느끼는 표현이 상대에게는 부담스러울 수 있습니다.,
+        '내가 편안하게 느끼는 표현이 상대에게는 부담스러울 수 있습니다.',
         '상대의 반응이 차갑게 느껴진다고 해서 반드시 나를 싫어하는 것은 아닙니다.'],
       community: [
         '환하게 웃으며 반겨줄 때.',
@@ -155,8 +155,8 @@ document.addEventListener('DOMContentLoaded', () => {
         '따뜻한 표정과 반응으로 나를 반겨주고 마음을 표현해 주세요.',
       ],
       weeklyAction: '"이번 주 만나는 사람에게 먼저 미소로 인사하고, 상대가 편안해하는 방식으로 따뜻함을 표현하기"'
-    },
-  ];
+    }
+  };
 
   // 2. 30개 문항 데이터셋 (Q1 ~ Q30) 및 채점표 매핑
   const QUESTIONS = [
@@ -479,12 +479,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 나에게 필요한 사랑
-    resultCommunity.innerHTML = '';
-    resultData.love.forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = item;
-      resultCommunity.appendChild(li);
-    });
+    const resultLove = document.getElementById('resultLove');
+    if (resultLove) {
+      resultLove.innerHTML = '';
+      resultData.love.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        resultLove.appendChild(li);
+      });
+    }
 
     // 이번 주 실천
     resultWeeklyAction.textContent = resultData.weeklyAction;
