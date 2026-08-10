@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>공동체 관계 스타일 테스트 | 나는 어떤 사랑을 주고받을까?</title>
+  
+  <!-- SEO & Open Graph Meta -->
+  <meta name="description" content="나는 공동체 안에서 어떤 방식으로 사랑을 주고받는 사람일까? 30문항으로 알아보는 나의 공동체 관계 스타일 유형 테스트">
+  <meta property="og:title" content="공동체 관계 스타일 테스트">
+  <meta property="og:description" content="나는 공동체 안에서 어떤 방식으로 사랑을 주고받는 사람일까?">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts: Inter & Noto Sans KR -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Background Glow & Aesthetic Orbs -->
+  <div class="bg-gradient-container">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+  </div>
+
+  <!-- Mobile Viewport Wrapper (100vh) -->
+  <main class="mobile-app-wrapper">
+    <div class="mobile-card-container">
+
+      <!-- ================= 1. START SCREEN ================= -->
+      <section id="startScreen" class="screen-panel active">
+        <div class="start-header">
+          <span class="badge-tag">✨ 공동체 성향 분석</span>
+          <span class="q-count-badge">총 30문항</span>
+        </div>
+
+        <div class="start-hero-visual">
+          <div class="hero-avatar-group">
+            <span class="hero-emoji e1">👏</span>
+            <span class="hero-emoji e2">☕</span>
+            <span class="hero-emoji e3">🛠️</span>
+            <span class="hero-emoji e4">💌</span>
+            <span class="hero-emoji e5">🤗</span>
+          </div>
+          <div class="hero-ring"></div>
+        </div>
+
+        <div class="start-content">
+          <h1 class="main-title">공동체 관계 스타일</h1>
+          <p class="main-description">
+            나는 공동체 안에서 어떤 방식으로<br>
+            <strong>사랑을 주고받는 사람</strong>일까?
+          </p>
+
+          <!-- Guide Card -->
+          <div class="guide-card">
+            <div class="guide-title">💡 작성 방법</div>
+            <ul class="guide-list">
+              <li>각 문항에서 A와 B 중 더 나에게 가까운 것 하나만 선택하세요.</li>
+              <li>둘 다 좋더라도 조금 더 마음이 끌리는 것을 선택하면 됩니다.</li>
+              <li>정답은 없습니다. 평소의 나를 떠올리며 답해 주세요.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="start-action">
+          <button id="startBtn" class="btn btn-primary btn-lg ripple-effect">
+            <span>시작하기</span>
+            <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- ================= 2. QUIZ SCREEN ================= -->
+      <section id="quizScreen" class="screen-panel hidden">
+        <!-- Quiz Header: Top Bar & Progress -->
+        <header class="quiz-nav">
+          <button id="prevBtn" class="icon-nav-btn" aria-label="이전 질문">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+          </button>
+          
+          <div class="progress-info">
+            <span class="step-label">진행률</span>
+            <span id="currentStepText" class="step-text">1</span>
+            <span class="step-divider">/</span>
+            <span class="total-step-text">30</span>
+          </div>
+
+          <div class="nav-placeholder"></div>
+        </header>
+
+        <!-- Progress Bar Indicator -->
+        <div class="progress-bar-track">
+          <div id="progressBarFill" class="progress-bar-fill" style="width: 3.33%;"></div>
+        </div>
+
+        <!-- Question Card View -->
+        <div class="question-container">
+          <div id="questionCard" class="question-card">
+            <span id="qCategoryBadge" class="q-cat-badge">Q1</span>
+            <h2 id="qTitle" class="question-title">질문 텍스트가 여기에 표시됩니다.</h2>
+          </div>
+
+          <!-- 2 Options -->
+          <div class="options-group">
+            <button id="optionABtn" class="btn option-btn option-a" data-choice="A">
+              <span class="option-badge">A</span>
+              <span id="optionAText" class="option-text">첫 번째 선택지 텍스트</span>
+            </button>
+
+            <button id="optionBBtn" class="btn option-btn option-b" data-choice="B">
+              <span class="option-badge">B</span>
+              <span id="optionBText" class="option-text">두 번째 선택지 텍스트</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 3. LOADING SCREEN ================= -->
+      <section id="loadingScreen" class="screen-panel hidden">
+        <div class="loading-box">
+          <div class="spinner-ring">
+            <div class="spinner-core">💖</div>
+          </div>
+          <h3 class="loading-title">30문항 답변 분석 중...</h3>
+          <p class="loading-subtext">나의 공동체 사랑 유형을 찾고 있습니다 ✨</p>
+        </div>
+      </section>
+
+      <!-- ================= 4. RESULT SCREEN ================= -->
+      <section id="resultScreen" class="screen-panel hidden">
+        <div class="result-scroll-view">
+          <div class="result-header">
+            <span class="result-label">나의 공동체 관계 스타일</span>
+            <h2 id="resultTitle" class="result-title">① 격려형</h2>
+            <p id="resultSubtitle" class="result-subtitle">"말 한마디가 사람을 세운다고 믿는 사람"</p>
+          </div>
+
+          <!-- Result Illustration/Avatar Card -->
+          <div class="result-avatar-card">
+            <div id="resultEmojiVisual" class="result-emoji-large">👏</div>
+            <div class="avatar-glow"></div>
+          </div>
+
+          <!-- Tags -->
+          <div id="resultTags" class="result-tags">
+            <span class="tag">#격려형</span>
+            <span class="tag">#칭찬</span>
+            <span class="tag">#응원</span>
+          </div>
+
+          <!-- Section 1: 강점 -->
+          <div class="result-card-box">
+            <h3 class="box-title">✨ 강점</h3>
+            <ul id="resultStrengths" class="desc-list">
+              <li>사람을 잘 칭찬합니다.</li>
+              <li>용기를 북돋워 줍니다.</li>
+              <li>분위기를 밝게 만듭니다.</li>
+              <li>다른 사람의 장점을 잘 발견합니다.</li>
+            </ul>
+          </div>
+
+          <!-- Section 2: 주의할 점 -->
+          <div class="result-card-box warning-box">
+            <h3 class="box-title">⚠️ 주의할 점</h3>
+            <ul id="resultCautions" class="desc-list">
+              <li>따뜻한 말은 하지만 실제 도움이 부족할 수 있습니다.</li>
+              <li>비판적인 말을 오래 마음에 담아둘 수 있습니다.</li>
+            </ul>
+          </div>
+
+          <!-- Section 3: 공동체에서 이런 모습 -->
+          <div class="result-card-box community-box">
+            <h3 class="box-title">🤝 공동체에서 이런 모습</h3>
+            <ul id="resultCommunity" class="desc-list">
+              <li>응원 메시지를 잘 보냅니다.</li>
+              <li>축복기도를 잘합니다.</li>
+              <li>사람을 세워주는 리더가 됩니다.</li>
+            </ul>
+          </div>
+
+          <!-- Section 4: 이번 주 실천 -->
+          <div class="result-card-box action-tip-box">
+            <h3 class="box-title">🌱 이번 주 실천</h3>
+            <p id="resultWeeklyAction" class="action-tip-text">"오늘 한 사람을 구체적으로 칭찬해 보기"</p>
+          </div>
+
+          <!-- Actions -->
+          <div class="result-actions">
+            <button id="shareBtn" class="btn btn-primary btn-block">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                <polyline points="16 6 12 2 8 6"/>
+                <line x1="12" y1="2" x2="12" y2="15"/>
+              </svg>
+              <span>결과 공유하기</span>
+            </button>
+
+            <button id="restartBtn" class="btn btn-secondary btn-block">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="1 4 1 10 7 10"/>
+                <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+              </svg>
+              <span>다시하기</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Toast Notification System -->
+  <div id="toastNotification" class="toast hidden">
+    <span id="toastMessage">링크가 클립보드에 복사되었습니다!</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
