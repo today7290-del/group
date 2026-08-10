@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: 2,
       optA: { text: "실제로 도와주는 행동이 가장 고맙다.", type: '실천형' },
-      optB: { text: "나를 생각하며 준비한 작은 마음이 더 감동이다.", type: '마음형' }
+      optB: { text: "나를 생각하며 준비한 작은 선물이 더 감동이다.", type: '마음형' }
     },
     {
       id: 3,
@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: 10,
-      optA: { text: "나를 기억하며 준비한 작은 것이 감동이다.", type: '마음형' },
+      optA: { text: "나를 기억하며 준비한 작은 선물이 감동이다.", type: '마음형' },
       optB: { text: "자연스러운 스킨십이 관계를 가깝게 만든다.", type: '친밀형' }
     },
     {
@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: 17,
       optA: { text: "실제로 도움을 받으면 마음이 열린다.", type: '실천형' },
-      optB: { text: "나를 생각한 작은 정성이 더 감동이다.", type: '마음형' }
+      optB: { text: "나를 생각한 작은 이 더 감동이다.", type: '마음형' }
     },
     {
       id: 18,
@@ -477,7 +477,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 11. 공유하기 (클립보드 복사)
   function handleShare() {
     const shareUrl = window.location.href;
-    
+
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(shareUrl).then(() => {
         showToast('결과 링크가 클립보드에 복사되었습니다! 💕');
