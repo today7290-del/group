@@ -403,7 +403,7 @@ const QUESTIONS = [
 
     // 질문 정보
     qCategoryBadge.textContent = `Q${q.id}`;
-    qTitle.textContent = `Q${q.id}. 나에게 더 가까운 모습은?`;
+    qTitle.textContent = `Q${q.id}. 나에게 더 따뜻하고 친밀하게 다가오는 모습은?`;
 
     optionAText.textContent = q.optA.text;
     optionBText.textContent = q.optB.text;
