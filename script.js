@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // 2. 30개 문항 데이터셋 (Q1 ~ Q30) 및 채점표 매핑
-const questions = [
+const QUESTIONS = [
   {
     id: 1,
     optA: { text: "나를 생각해서 준비한 작은 선물이나 메모를 받으면 사랑받고 있다는 느낌이 든다.", type: '마음형' },
