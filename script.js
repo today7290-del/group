@@ -163,8 +163,8 @@ document.addEventListener('DOMContentLoaded', () => {
 const QUESTIONS = [
   {
     id: 1,
-    optA: { text: '"나를 생각해서 준비한 작은 선물이나 메모를 받으면 사랑받고 있다는 느낌이 든다."', type: '마음형' },
-    optB: { text: '"진심 어린 격려와 응원의 말을 들으면 사랑받고 있다는 느낌이 든다."', type: '격려형' }
+    optA: { text: '나를 생각해서 준비한 작은 선물이나 메모를 받으면 사랑받고 있다는 느낌이 든다.', type: '마음형' },
+    optB: { text: '진심 어린 격려와 응원의 말을 들으면 사랑받고 있다는 느낌이 든다.', type: '격려형' }
   },
   {
     id: 2,
