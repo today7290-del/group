@@ -510,11 +510,11 @@ const QUESTIONS = [
     });
 
     // 이런 순간에 마음이 닫힙니다
-    resultBeware.innerHTML = '';
-    resultData.Beware.forEach(item => {
+    resultbeware.innerHTML = '';
+    resultData.beware.forEach(item => {
       const li = document.createElement('li');
       li.textContent = item;
-      resultBeware.appendChild(li);
+      resultbeware.appendChild(li);
     });
 
     // 나에게 필요한 사랑
