@@ -501,12 +501,20 @@ const QUESTIONS = [
       resultCautions.appendChild(li);
     });
 
-    // 공동체에서 이런 순간에 마음이 열립니다
+    // 이런 순간에 마음이 열립니다
     resultCommunity.innerHTML = '';
     resultData.community.forEach(item => {
       const li = document.createElement('li');
       li.textContent = item;
       resultCommunity.appendChild(li);
+    });
+
+    // 이런 순간에 마음이 닫힙니다
+    resultBeware.innerHTML = '';
+    resultData.Beware.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = item;
+      resultBeware.appendChild(li);
     });
 
     // 나에게 필요한 사랑
