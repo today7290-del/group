@@ -518,18 +518,19 @@ const QUESTIONS = [
     });
 
     // 나에게 필요한 사랑
-    const resultLove = document.getElementById('resultLove');
-    if (resultLove) {
-      resultLove.innerHTML = '';
-      resultLove.style.listStyle = 'none';
-      resultLove.style.padding = '0';
-      resultLove.style.textAlign = 'center';
-      resultData.love.forEach(item => {
-    const li = document.createElement('li');
-    li.textContent = item;
-    resultLove.appendChild(li);
-  });
-}
+   const resultLove = document.getElementById('resultLove');
+   if (resultLove) {
+     resultLove.innerHTML = '';
+     resultLove.style.listStyle = 'none';
+     resultLove.style.padding = '0';
+     resultLove.style.textAlign = 'center';
+
+     resultData.love.forEach(item => {
+       const li = document.createElement('li');
+       li.textContent = item;
+       resultLove.appendChild(li);
+     });
+   }
 
     // 이번 주 실천
     resultWeeklyAction.textContent = resultData.weeklyAction;
