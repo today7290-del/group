@@ -521,6 +521,9 @@ const QUESTIONS = [
     const resultLove = document.getElementById('resultLove');
     if (resultLove) {
       resultLove.innerHTML = '';
+      list-style: none;
+      padding: 0;
+      resultLove.style.textAlign = 'center';
       resultData.love.forEach(item => {
         const li = document.createElement('li');
         li.textContent = item;
