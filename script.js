@@ -346,6 +346,8 @@ const QUESTIONS = [
   // 3. 상태 변수 (State)
   let currentIndex = 0;
   let userAnswers = []; // 각 질문별 선택 유형 저장 배열 ['격려형', '실천형', ...]
+  let currentResultData = null;   // 1위 결과 유형 데이터 (공유하기에서 사용)
+  let currentRankedEntries = [];  // 점수순으로 정렬된 [유형키, 점수] 배열 (다른 유형 보기에서 사용)
 
   // 4. DOM 엘리먼트 참조
   const startScreen = document.getElementById('startScreen');
@@ -357,6 +359,10 @@ const QUESTIONS = [
   const prevBtn = document.getElementById('prevBtn');
   const restartBtn = document.getElementById('restartBtn');
   const shareBtn = document.getElementById('shareBtn');
+  const otherTypesBtn = document.getElementById('otherTypesBtn');
+  const otherTypesModal = document.getElementById('otherTypesModal');
+  const closeModalBtn = document.getElementById('closeModalBtn');
+  const otherTypesList = document.getElementById('otherTypesList');
 
   const currentStepText = document.getElementById('currentStepText');
   const progressBarFill = document.getElementById('progressBarFill');
@@ -374,6 +380,7 @@ const QUESTIONS = [
   const resultStrengths = document.getElementById('resultStrengths');
   const resultCautions = document.getElementById('resultCautions');
   const resultCommunity = document.getElementById('resultCommunity');
+  const resultBeware = document.getElementById('resultBeware');
   const resultWeeklyAction = document.getElementById('resultWeeklyAction');
 
   const toastNotification = document.getElementById('toastNotification');
@@ -458,18 +465,15 @@ const QUESTIONS = [
       }
     });
 
-    // 최고 점수 유형 찾기
-    let maxScore = -1;
-    let topTypeKey = '격려형';
+    // 점수 내림차순 정렬 (동점일 경우 유형 정의 순서 유지)
+    const sortedEntries = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+    const topTypeKey = sortedEntries[0][0];
 
-    Object.keys(scores).forEach(key => {
-      if (scores[key] > maxScore) {
-        maxScore = scores[key];
-        topTypeKey = key;
-      }
-    });
+    // 이후 공유하기 / 다른 유형 보기에서 재사용할 수 있도록 상태 저장
+    currentRankedEntries = sortedEntries;
 
     const resultData = TYPES[topTypeKey];
+    currentResultData = resultData;
 
     // DOM 업데이트
     resultTitle.textContent = resultData.title;
@@ -535,7 +539,92 @@ const QUESTIONS = [
     // 이번 주 실천
     resultWeeklyAction.textContent = resultData.weeklyAction;
 
+    // 2~5위 "다른 유형 결과" 모달 콘텐츠 준비
+    renderOtherTypes(sortedEntries);
+
     showScreen(resultScreen);
+  }
+
+  // 8-1. 2~5위 다른 유형 결과 목록 렌더링 (아코디언 카드)
+  function renderOtherTypes(sortedEntries) {
+    if (!otherTypesList) return;
+
+    const rankLabels = ['①', '②', '③', '④', '⑤'];
+    // 1위(대표 유형)는 이미 결과 화면 상단에 표시되므로 2~5위만 노출
+    const others = sortedEntries.slice(1);
+
+    otherTypesList.innerHTML = others.map(([typeKey, score], idx) => {
+      const t = TYPES[typeKey];
+      const rankLabel = rankLabels[idx + 1] || `${idx + 2}위`;
+
+      const tagsHTML = t.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+      const strengthsHTML = t.strengths.map(li => `<li>${li}</li>`).join('');
+      const cautionsHTML = t.cautions.map(li => `<li>${li}</li>`).join('');
+      const communityHTML = t.community.map(li => `<li>${li}</li>`).join('');
+      const bewareHTML = t.beware.map(li => `<li>${li}</li>`).join('');
+      const loveText = t.love[0] || '';
+
+      return `
+        <details class="other-type-card">
+          <summary class="other-type-summary">
+            <span class="other-type-rank">${rankLabel}</span>
+            <span class="other-type-emoji">${t.emoji}</span>
+            <span class="other-type-headtext">
+              <span class="other-type-name">${t.name}</span>
+              <span class="other-type-sub">${t.subtitle}</span>
+            </span>
+            <span class="other-type-score">${score}/${QUESTIONS.length}</span>
+            <svg class="other-type-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </summary>
+          <div class="other-type-body">
+            <div class="result-tags">${tagsHTML}</div>
+            <div class="ot-section">
+              <h4>✨ 강점</h4>
+              <ul>${strengthsHTML}</ul>
+            </div>
+            <div class="ot-section">
+              <h4>⚠️ 주의할 점</h4>
+              <ul>${cautionsHTML}</ul>
+            </div>
+            <div class="ot-section">
+              <h4>🤝 이런 순간에 마음이 열립니다</h4>
+              <ul>${communityHTML}</ul>
+            </div>
+            <div class="ot-section">
+              <h4>⚠️ 이런 순간에 마음이 닫힙니다</h4>
+              <ul>${bewareHTML}</ul>
+            </div>
+            <div class="ot-section">
+              <h4>❤️ 필요한 사랑</h4>
+              <p>"${loveText}"</p>
+            </div>
+            <div class="ot-section">
+              <h4>🌱 이번 주 실천</h4>
+              <p>"${t.weeklyAction}"</p>
+            </div>
+          </div>
+        </details>
+      `;
+    }).join('');
+  }
+
+  // 8-2. 다른 유형 모달 열기 / 닫기
+  function openOtherTypesModal() {
+    if (!otherTypesModal) return;
+    otherTypesModal.classList.remove('hidden');
+    // 리플로우를 강제해 transition이 확실히 적용되도록 함
+    void otherTypesModal.offsetWidth;
+    otherTypesModal.classList.add('show');
+  }
+
+  function closeOtherTypesModal() {
+    if (!otherTypesModal) return;
+    otherTypesModal.classList.remove('show');
+    setTimeout(() => {
+      otherTypesModal.classList.add('hidden');
+    }, 300);
   }
 
   // 9. 이전 질문 버튼 (롤백)
@@ -553,18 +642,46 @@ const QUESTIONS = [
     showScreen(startScreen);
   }
 
-  // 11. 공유하기 (클립보드 복사)
+  // 11. 공유하기 (내 결과 내용을 담아 공유)
   function handleShare() {
     const shareUrl = window.location.href;
+    const data = currentResultData;
 
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(shareUrl).then(() => {
-        showToast('결과 링크가 클립보드에 복사되었습니다! 💕');
+    // 결과가 아직 없다면(예외 상황) 링크만 공유
+    const shareTitle = data
+      ? `나의 관계 스타일은 "${data.title} ${data.name}"!`
+      : '관계 스타일 테스트';
+
+    const shareText = data
+      ? `${data.subtitle}\n${data.tags.slice(0, 3).join(' ')}\n\n나의 관계 스타일 테스트 결과를 확인해보세요 👇`
+      : '나는 어떤 방식으로 다가올 때 편안할까요? 관계 스타일 테스트를 해보세요!';
+
+    // 1) Web Share API 지원 시 (모바일 브라우저 등) - 카카오톡/문자/메일 등으로 바로 공유
+    if (navigator.share) {
+      navigator.share({
+        title: shareTitle,
+        text: shareText,
+        url: shareUrl
       }).catch(() => {
-        fallbackCopyTextToClipboard(shareUrl);
+        // 사용자가 공유를 취소한 경우 등은 별도 처리하지 않음
+      });
+      return;
+    }
+
+    // 2) 미지원 브라우저: 결과 내용 + 링크를 클립보드에 복사
+    const clipboardText = `${shareTitle}\n${shareText}\n${shareUrl}`;
+    copyTextToClipboard(clipboardText);
+  }
+
+  function copyTextToClipboard(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('결과가 클립보드에 복사되었습니다! 붙여넣기로 공유해 보세요 💕');
+      }).catch(() => {
+        fallbackCopyTextToClipboard(text);
       });
     } else {
-      fallbackCopyTextToClipboard(shareUrl);
+      fallbackCopyTextToClipboard(text);
     }
   }
 
@@ -579,9 +696,9 @@ const QUESTIONS = [
     textArea.select();
     try {
       document.execCommand('copy');
-      showToast('결과 링크가 클립보드에 복사되었습니다! 💕');
+      showToast('결과가 클립보드에 복사되었습니다! 붙여넣기로 공유해 보세요 💕');
     } catch (err) {
-      showToast('주소를 직접 복사해 주세요.');
+      showToast('내용을 직접 복사해 주세요.');
     }
     document.body.removeChild(textArea);
   }
@@ -614,5 +731,20 @@ const QUESTIONS = [
 
   restartBtn.addEventListener('click', handleRestart);
   shareBtn.addEventListener('click', handleShare);
+
+  if (otherTypesBtn) {
+    otherTypesBtn.addEventListener('click', openOtherTypesModal);
+  }
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', closeOtherTypesModal);
+  }
+  if (otherTypesModal) {
+    // 배경(오버레이) 클릭 시 닫기
+    otherTypesModal.addEventListener('click', (e) => {
+      if (e.target === otherTypesModal) {
+        closeOtherTypesModal();
+      }
+    });
+  }
 
 });

@@ -220,6 +220,14 @@
               <span>결과 공유하기</span>
             </button>
 
+            <button id="otherTypesBtn" class="btn btn-secondary btn-block">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="M12 8v4l3 2"/>
+              </svg>
+              <span>다른 유형 결과도 보기 (2~5위)</span>
+            </button>
+
             <button id="restartBtn" class="btn btn-secondary btn-block">
               <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="1 4 1 10 7 10"/>
@@ -233,6 +241,22 @@
 
     </div>
   </main>
+
+  <!-- ================= OTHER TYPES MODAL (2~5위 해석 보기) ================= -->
+  <div id="otherTypesModal" class="modal-overlay hidden">
+    <div class="modal-panel">
+      <div class="modal-header">
+        <h3 class="modal-title">🏅 나의 유형 순위 (2~5위)</h3>
+        <button id="closeModalBtn" class="modal-close-btn" aria-label="닫기">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M18 6L6 18M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      <p class="modal-desc">1위(나의 대표 유형) 외에, 내 답변에서 함께 높은 점수를 받은 유형들의 해석도 확인해보세요.</p>
+      <div id="otherTypesList" class="modal-list"></div>
+    </div>
+  </div>
 
   <!-- Toast Notification System -->
   <div id="toastNotification" class="toast hidden">
