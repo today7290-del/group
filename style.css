@@ -966,12 +966,10 @@ body {
   border-radius: 22px 22px 0 0;
   box-shadow: var(--card-shadow);
   padding: 20px 20px 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
   transform: translateY(24px);
   transition: transform var(--transition-smooth);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .modal-overlay.show .modal-panel {
@@ -991,6 +989,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  margin-bottom: 4px;
 }
 
 .modal-title {
@@ -1028,14 +1027,15 @@ body {
   color: var(--text-muted);
   line-height: 1.5;
   word-break: keep-all;
+  margin-bottom: 10px;
 }
 
 .modal-list {
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 12px;
   padding-right: 2px;
+  padding-bottom: 8px;
 }
 
 .modal-list::-webkit-scrollbar {
@@ -1053,6 +1053,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-md);
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .other-type-card[open] {

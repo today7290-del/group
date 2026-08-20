@@ -328,25 +328,8 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: 28,
-      optA: { text: "편안한 미소와 눈맞춤, 가벼운 하이파이브같은 표현이 친근하게 느껴진다.", type: '친밀형' },
-      optB: { text: "산책하거나 차를 마시며 함께 시간을 보낸 사람이 친근하게 느껴진다.", type: '동행형' }
-    },
-    {
-      id: 29,
-      optA: { text: "힘들 때 진심 어린 응원과 격려를 받으면 내가 소중한 사람이라는 생각이 든다.", type: '격려형' },
-      optB: { text: "힘들 때 필요한 일을 함께 해결해 주면 내가 소중한 사람이라는 생각이 든다.", type: '실천형' }
-    },
-    {
-      id: 30,
-      optA: { text: "나를 위해 준비한 간식이나 물건에서 나를 생각해 준 마음이 느껴진다.", type: '마음형' },
-      optB: { text: "따뜻하게 웃어주고 반갑게 맞아주는 모습에서 나를 향한 마음이 느껴진다.", type: '친밀형' }
-    }
-  ];
-
-  // 3. 상태 변수 (State)
-  let currentIndex = 0;
-  let userAnswers = []; // 각 질문별 선택 유형 저장 배열 ['격려형', '실천형', ...]
-  let currentResultData = null;   // 1위 결과 유형 데이터 (공유하기에서 사용)
+      optA: { text: "편안한 미소와 눈맞춤, 가벼운 하이파이브�
+  function renderOtherTypes(sortedEntries) {��에서 사용)
   let currentRankedEntries = [];  // 점수순으로 정렬된 [유형키, 점수] 배열 (다른 유형 보기에서 사용)
 
   // 4. DOM 엘리먼트 참조
@@ -533,9 +516,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2~5위 "다른 유형 결과" 모달 콘텐츠 준비
     renderOtherTypes(sortedEntries);
 
-    // 공유 캡처 카드 업데이트
-    updateShareCard(resultData);
-
     showScreen(resultScreen);
   }
 
@@ -559,7 +539,7 @@ document.addEventListener('DOMContentLoaded', () => {
       captureStrengthList.innerHTML = data.strengths.map(s => `<li>${s}</li>`).join('');
     }
     if (captureLove) {
-      captureLove.textContent = `"${data.love[0] || ''}"` ;
+      captureLove.textContent = `"${data.love[0] || ''}"`;
     }
   }
 
@@ -660,7 +640,7 @@ document.addEventListener('DOMContentLoaded', () => {
     showScreen(startScreen);
   }
 
-  // 11. 공유하기 - 이미지 캡처 후 공유
+  // 11. 공유하기 - Canvas API로 직접 이미지 생성
   async function handleShare() {
     const data = currentResultData;
     if (!data) {
@@ -668,32 +648,11 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    const captureEl = document.getElementById('shareCaptureCard');
-    if (!captureEl) {
-      showToast('공유 카드를 찾을 수 없습니다.');
-      return;
-    }
-
     showToast('이미지 생성 중... ✨');
 
-    // 캡처를 위해 요소를 잠시 화면에 표시
-    captureEl.style.top = '-9999px';
-    captureEl.style.left = '0';
-    captureEl.style.zIndex = '9999';
-    captureEl.style.position = 'fixed';
-
     try {
-      const canvas = await html2canvas(captureEl, {
-        backgroundColor: null,
-        scale: 2,
-        useCORS: true,
-        logging: false,
-        width: captureEl.offsetWidth,
-        height: captureEl.offsetHeight
-      });
-
-      captureEl.style.top = '-9999px';
-      captureEl.style.zIndex = '-1';
+      const canvas = buildResultCanvas(data);
+      const fileName = `관계스타일_${data.name}_결과.png`;
 
       canvas.toBlob(async (blob) => {
         if (!blob) {
@@ -701,43 +660,228 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
         }
 
-        const fileName = `관계스타일_${data.name}_결과.png`;
         const file = new File([blob], fileName, { type: 'image/png' });
 
-        // Web Share API로 파일 공유 시도 (모바일)
+        // 모바일: Web Share API로 파일 공유 시도
         if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
           try {
             await navigator.share({
               title: `나의 관계 스타일은 "${data.title}"!`,
-              text: `${data.subtitle}\n${data.tags.slice(0, 3).join(' ')}\n\n나의 관계 스타일 테스트 결과를 확인해보세요 👇\nhttps://ks-view.tistory.com/`,
+              text: `${data.subtitle}\n${data.tags.slice(0, 3).join(' ')}\n\nhttps://ks-view.tistory.com/`,
               files: [file]
             });
             return;
           } catch (e) {
-            if (e.name !== 'AbortError') {
-              // 파일 공유 실패 시 이미지 다운로드로 대체
-              downloadImage(canvas, fileName);
-            }
-            return;
+            if (e.name === 'AbortError') return; // 사용자 취소
           }
         }
 
-        // 미지원 환경: 이미지 다운로드
+        // PC / 미지원 환경: 이미지 다운로드
         downloadImage(canvas, fileName);
       }, 'image/png');
 
     } catch (err) {
-      captureEl.style.top = '-9999px';
-      captureEl.style.zIndex = '-1';
+      console.error('Share error:', err);
       showToast('이미지 생성 중 오류가 발생했습니다.');
     }
+  }
+
+  // Canvas API로 결과 이미지 직접 그리기
+  function buildResultCanvas(data) {
+    const W = 720, PADDING = 56;
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // ── 1단계: 내용 줄바꿈 처리 함수 ──
+    function wrapText(text, maxWidth, lineHeight, font) {
+      ctx.font = font;
+      const words = text.split('');
+      const lines = [];
+      let line = '';
+      for (const ch of words) {
+        const test = line + ch;
+        if (ctx.measureText(test).width > maxWidth && line) {
+          lines.push(line);
+          line = ch;
+        } else {
+          line = test;
+        }
+      }
+      if (line) lines.push(line);
+      return lines;
+    }
+
+    // ── 2단계: 높이 계산 ──
+    canvas.width = W;
+    canvas.height = 10; // 임시
+    ctx.font = '26px sans-serif';
+
+    const contentW = W - PADDING * 2;
+    let totalH = PADDING; // 상단 패딩
+
+    totalH += 36; // badge
+    totalH += 24; // gap
+    totalH += 80; // emoji
+    totalH += 20; // gap
+    totalH += 48; // title
+    totalH += 14; // gap
+    const subtitleLines = wrapText(data.subtitle, contentW, 32, '24px sans-serif');
+    totalH += subtitleLines.length * 32 + 16;
+    // tags
+    totalH += 36 + 20; // tags row + gap
+    // love box
+    const loveLines = wrapText(data.love[0] || '', contentW - 40, 30, '22px sans-serif');
+    totalH += 24 + loveLines.length * 30 + 24 + 20; // padding top + lines + padding bottom + gap
+    // strengths box
+    let strengthH = 36;
+    data.strengths.forEach(s => {
+      strengthH += wrapText(s, contentW - 60, 26, '20px sans-serif').length * 26 + 10;
+    });
+    totalH += strengthH + 24 + 20;
+    // footer
+    totalH += 40 + PADDING;
+
+    canvas.height = totalH;
+
+    // ── 3단계: 실제 드로잉 ──
+    // 배경 그라디언트
+    const bg = ctx.createLinearGradient(0, 0, W, totalH);
+    bg.addColorStop(0, '#0f172a');
+    bg.addColorStop(0.5, '#1e1b4b');
+    bg.addColorStop(1, '#31103f');
+    ctx.fillStyle = bg;
+    ctx.roundRect(0, 0, W, totalH, 32);
+    ctx.fill();
+
+    // 글로우 원 장식
+    const glow1 = ctx.createRadialGradient(80, 80, 0, 80, 80, 200);
+    glow1.addColorStop(0, 'rgba(138,35,135,0.4)');
+    glow1.addColorStop(1, 'rgba(138,35,135,0)');
+    ctx.fillStyle = glow1;
+    ctx.fillRect(0, 0, W, totalH);
+
+    const glow2 = ctx.createRadialGradient(W - 60, totalH - 60, 0, W - 60, totalH - 60, 220);
+    glow2.addColorStop(0, 'rgba(255,107,107,0.35)');
+    glow2.addColorStop(1, 'rgba(255,107,107,0)');
+    ctx.fillStyle = glow2;
+    ctx.fillRect(0, 0, W, totalH);
+
+    let y = PADDING;
+
+    // Badge
+    const badgeText = '✨ 관계 스타일 테스트 결과';
+    ctx.font = 'bold 22px sans-serif';
+    const bW = ctx.measureText(badgeText).width + 40;
+    const bX = (W - bW) / 2;
+    ctx.fillStyle = 'rgba(255,107,107,0.18)';
+    ctx.strokeStyle = 'rgba(255,107,107,0.4)';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.roundRect(bX, y, bW, 36, 18); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#ff9a9e';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(badgeText, W / 2, y + 18);
+    y += 36 + 24;
+
+    // Emoji
+    ctx.font = '72px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(data.emoji, W / 2, y + 72);
+    y += 80 + 20;
+
+    // Title
+    ctx.font = 'bold 42px sans-serif';
+    const titleGrad = ctx.createLinearGradient(0, y, W, y + 48);
+    titleGrad.addColorStop(0, '#ffffff');
+    titleGrad.addColorStop(1, '#ffd1ff');
+    ctx.fillStyle = titleGrad;
+    ctx.textAlign = 'center';
+    ctx.fillText(data.title, W / 2, y + 36);
+    y += 48 + 14;
+
+    // Subtitle
+    ctx.font = '24px sans-serif';
+    ctx.fillStyle = 'rgba(255,255,255,0.72)';
+    subtitleLines.forEach(line => {
+      ctx.fillText(line, W / 2, y + 18);
+      y += 32;
+    });
+    y += 16;
+
+    // Tags
+    ctx.font = 'bold 20px sans-serif';
+    let tagX = PADDING;
+    const tagsToShow = data.tags.slice(0, 4);
+    const tagWidths = tagsToShow.map(t => ctx.measureText(t).width + 28);
+    const totalTagW = tagWidths.reduce((a, b) => a + b + 10, 0) - 10;
+    tagX = (W - totalTagW) / 2;
+    tagsToShow.forEach((tag, i) => {
+      const tw = tagWidths[i];
+      ctx.fillStyle = 'rgba(255,255,255,0.08)';
+      ctx.strokeStyle = 'rgba(255,255,255,0.18)';
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.roundRect(tagX, y, tw, 34, 17); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = '#ffa69e';
+      ctx.textAlign = 'center';
+      ctx.fillText(tag, tagX + tw / 2, y + 17);
+      tagX += tw + 10;
+    });
+    y += 36 + 20;
+
+    // Love box
+    const loveBoxH = 24 + loveLines.length * 30 + 24;
+    ctx.fillStyle = 'rgba(244,114,182,0.12)';
+    ctx.strokeStyle = 'rgba(244,114,182,0.35)';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.roundRect(PADDING, y, contentW, loveBoxH, 14); ctx.fill(); ctx.stroke();
+    ctx.font = 'bold 22px sans-serif';
+    ctx.fillStyle = '#fbcfe8';
+    ctx.textAlign = 'center';
+    loveLines.forEach((line, i) => {
+      ctx.fillText('"' + (i === 0 ? '' : '') + line + (i === loveLines.length - 1 ? '"' : ''), W / 2, y + 24 + i * 30 + 14);
+    });
+    y += loveBoxH + 20;
+
+    // Strengths box
+    ctx.fillStyle = 'rgba(255,255,255,0.05)';
+    ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.roundRect(PADDING, y, contentW, strengthH, 14); ctx.fill(); ctx.stroke();
+    ctx.font = 'bold 22px sans-serif';
+    ctx.fillStyle = '#ffffff';
+    ctx.textAlign = 'left';
+    ctx.fillText('✨ 강점', PADDING + 20, y + 30);
+    let sy = y + 50;
+    data.strengths.forEach(s => {
+      ctx.fillStyle = '#ff6b6b';
+      ctx.font = 'bold 22px sans-serif';
+      ctx.fillText('•', PADDING + 20, sy + 14);
+      ctx.fillStyle = 'rgba(255,255,255,0.8)';
+      ctx.font = '20px sans-serif';
+      const sLines = wrapText(s, contentW - 60, 26, '20px sans-serif');
+      sLines.forEach((sl, i) => {
+        ctx.fillText(sl, PADDING + 42, sy + i * 26 + 14);
+      });
+      sy += sLines.length * 26 + 10;
+    });
+    y += strengthH + 24;
+
+    // Footer
+    ctx.font = '18px sans-serif';
+    ctx.fillStyle = 'rgba(255,255,255,0.3)';
+    ctx.textAlign = 'center';
+    ctx.fillText('https://ks-view.tistory.com/', W / 2, y + 20);
+
+    return canvas;
   }
 
   function downloadImage(canvas, fileName) {
     const link = document.createElement('a');
     link.download = fileName;
     link.href = canvas.toDataURL('image/png');
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
     showToast('이미지가 저장되었습니다! 💾');
   }
 
