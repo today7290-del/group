@@ -1,336 +1,330 @@
 /**
- * [공동체 관계 스타일] 모바일 유형 테스트 웹 애플리케이션 - JavaScript
- * 30문항 기반 공동체 관계 및 사랑의 언어 유형 분석
+ * [관계 스타일 테스트] 모바일 웹 애플리케이션 - JavaScript
+ * 30문항 기반 관계 및 사랑의 언어 스타일 분석
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  ;
-  // 1. 5가지 공동체 사랑 유형 데이터 정의
+  // 1. 5가지 관계 스타일 데이터 정의
   const TYPES = {
     '격려형': {
       id: 'ENCOURAGE',
       name: '격려형',
-      title: '① 격려형',
+      title: '👏 격려형',
       subtitle: '"따뜻한 말 한마디가 마음을 움직이는 사람"',
       emoji: '👏',
-      tags: ['#격려형', '#칭찬요정', '#응원과용기', '#긍정언어'],
+      tags: ['#격려형', '#칭찬과인정', '#응원과용기', '#긍정언어'],
       strengths: [
-        '다른 사람의 진심 어린 말을 소중하게 여깁니다.',
-        '격려를 받으면 다시 힘을 낼 수 있습니다.',
-        '자신의 장점을 발견해 주는 사람에게 마음을 엽니다.',
-        '말 한마디에 담긴 마음을 잘 느낍니다.'
+        '다른 사람의 진심 어린 말을 소중하게 가슴에 새깁니다.',
+        '진심 어린 격려를 받으면 다시 일어설 용기와 힘을 얻습니다.',
+        '자신의 노고와 장점을 알아봐 주는 사람에게 깊은 고마움을 느낍니다.',
+        '따뜻한 말 한마디에 담긴 진심을 잘 알아차립니다.'
       ],
       cautions: [
-        '무심한 말이나 비판적인 말을 오래 마음에 담아둘 수 있습니다.',
-        '말로 표현하지 않으면 상대가 자신을 소중하게 여기지 않는다고 느낄 수 있습니다.',
-        '상대의 말에 너무 큰 의미를 부여하지 않도록 주의할 필요가 있습니다.'
+        '무심하거나 비판적인 말을 오래 마음에 담아둘 수 있습니다.',
+        '말로 표현받지 못하면 상대가 나를 소중히 여기지 않는다고 느낄 수 있습니다.',
+        '상대의 한마디에 감정이 쉽게 흔들리지 않도록 마인드 컨트롤이 필요합니다.'
       ],
       community: [
-        '말로 마음을 표현해 줄 때',
-        '"수고했어요."',
-        '"당신이 있어서 참 좋아요."',
-        '"잘하고 있어요."',
-        '누군가 나의 장점을 알아주었을 때'
+        '따뜻한 말로 마음을 전해줄 때',
+        '"수고했어", "네가 있어서 정말 든든해", "잘하고 있어"',
+        '나의 수고와 장점을 구체적으로 칭찬해 줄 때'
       ],
       beware: [
-        '부정적인 말을 들을 때',
-        '무심한 말을 들을 때',
-        '다른 사람과 비교하는 말을 때',
-        '수고와 노력을 인정받지 못할 때'
+        '부정적이거나 날카로운 비판을 들을 때',
+        '무심하고 차가운 반응을 접할 때',
+        '나의 수고와 노력이 당연하게 여겨질 때'
       ],
-      love: [
-        '내가 한 일과 나의 존재를 알아주는 따뜻한 말 한마디에 마음이 열립니다. 나의 존재와 수고를 알아주고 따뜻한 말로 표현해 주세요.'
-      ],
-      weeklyAction: '이번 주 한 사람에게 구체적인 칭찬이나 격려의 말을 먼저 전해보기'
+      love: '나의 존재와 노력을 알아주고 따뜻한 칭찬과 응원의 말로 표현해 주는 사랑입니다.',
+      weeklyAction: '오늘 소중한 사람에게 구체적인 칭찬과 따뜻한 격려 한마디 건네보기'
     },
 
     '동행형': {
       id: 'COMPANION',
       name: '동행형',
-      title: '② 동행형',
-      subtitle: '"함께 있어주는 것이 사랑이라고 믿는 사람"',
+      title: '🤝 동행형',
+      subtitle: '"함께 시간을 보내주는 것이 사랑이라고 믿는 사람"',
       emoji: '☕',
-      tags: ['#동행형', '#함께하는시간', '#경청과교제', '#관계의연결고리'],
+      tags: ['#동행형', '#함께하는시간', '#경청과교감', '#오롯한집중'],
       strengths: [
-        '관계를 소중하게 여깁니다.',
-        '깊이 있는 대화를 중요하게 생각합니다.',
-        '함께하는 시간에서 안정감을 느낍니다.',
-        '상대방의 관심과 집중을 잘 알아차립니다.'
+        '소중한 사람과의 깊이 있는 대화와 시간을 매우 가치 있게 여깁니다.',
+        '나에게 온전히 집중해 주는 순간에서 큰 안정감과 사랑을 느낍니다.',
+        '상대의 작은 관심과 경청의 태도를 빠르게 알아차립니다.',
+        '함께 걷거나 다정하게 만나는 시간 자체를 진심으로 즐깁니다.'
       ],
       cautions: [
-        '함께하지 못하는 것을 사랑이 부족한 것으로 오해할 수 있습니다.',
-        '상대가 바쁘거나 혼자 있을 시간이 필요한 것을 개인적인 거절로 받아들이지 않도록 주의할 필요가 있습니다.',
-        '관계에 지나치게 많은 시간과 에너지를 사용하지 않도록 자신의 경계도 돌봐야 합니다.'
+        '바빠서 시간을 함께 보내지 못하는 것을 나에 대한 애정 부족으로 오해할 수 있습니다.',
+        '상대방이 혼자만의 시간이 필요할 때 서운함을 느낄 수 있으니 주의가 필요합니다.'
       ],
       community: [
-        '함께 식사할 때',
-        '나의 이야기를 충분히 들어줄 때',
-        '함께 산책하거나 차를 마실 때',
-        '바쁜 중에도 나를 위해 시간을 내어줄 때'
+        '차를 마시거나 산책하며 오롯이 대화할 때',
+        '나의 이야기에 휴대폰을 내려놓고 몰입해 줄 때',
+        '바쁜 와중에도 나를 위해 시간을 내어줄 때'
       ],
       beware: [
-        '함께 있는 시간에 집중하지 않을 때',
-        '이야기를 건성으로 들을 때',
-        '약속한 시간을 가볍게 여길 때',
-        '함께하는 시간을 자주 미룰 때'
+        '함께 있을 때 휴대폰만 보거나 딴청을 피울 때',
+        '약속 시간을 가볍게 미루거나 취소할 때',
+        '건성으로 이야기를 들을 때'
       ],
-      love: [
-        '나와 함께 시간을 보내고, 내가 하는 이야기에 관심을 가져주세요.'
-      ],
-      weeklyAction: '이번 주 한 사람에게 먼저 시간을 내어 함께 식사하거나 차를 마시자고 제안하기'
+      love: '다른 방해 요소 없이 나에게 온전히 눈을 맞추며 함께 시간을 나누는 사랑입니다.',
+      weeklyAction: '이번 주 소중한 사람과 휴대폰을 내려놓고 30분 동안 깊은 대화 나눠보기'
     },
 
     '실천형': {
       id: 'ACTION',
       name: '실천형',
-      title: '③ 실천형',
-      subtitle: '"말보다 행동에서 사랑을 느끼는 사람"',
+      title: '🛠️ 실천형',
+      subtitle: '"말보다 행동에서 깊은 사랑을 느끼는 사람"',
       emoji: '🛠️',
-      tags: ['#실천형', '#행동파', '#책임감갑', '#묵묵한섬김'],
+      tags: ['#실천형', '#묵묵한배려', '#도움과섬김', '#책임감'],
       strengths: [
-        '행동의 진심을 잘 알아봅니다.',
-        '책임감과 성실함을 중요하게 생각합니다.',
-        '말보다 실제적인 배려를 신뢰합니다.',
-        '어려운 상황에서 누군가의 도움을 받으면 깊이 감사할 줄 압니다.'
+        '말뿐인 고백보다 구체적인 행동으로 도움을 주는 진심을 알아봅니다.',
+        '어려운 상황에서 먼저 손 내밀어 주는 이에게 깊은 감사를 느낍니다.',
+        '상대방의 필요를 먼저 알아차리고 현실적으로 챙겨주는 섬김을 귀하게 여깁니다.'
       ],
       cautions: [
-        '도움을 받지 못하면 관심이 없다고 느낄 수있습니다.',
-        '말이나 물질로 표현하는 사랑의 가치를 작게 생각할 수 있습니다.',
-        '상대가 도와주지 못하는 상황을 사랑의 부족으로 해석하지 않도록 주의할 필요가 있습니다.'
+        '말이나 선물로만 표현할 때 행동이 없으면 진정성을 낮게 평가할 수 있습니다.',
+        '상대가 사정상 직접 도와주지 못할 때 오해하지 않도록 배려가 필요합니다.'
       ],
       community: [
-        '누군가 힘든 일을 함께 해결해 줄 때',
-        '필요한 것을 먼저 챙겨줄 때',
-        '내가 부탁하기 전에 도움을 줄 때',
-        '말보다 행동으로 배려해 줄 때'
+        '내가 힘들어하는 일을 먼저 도와줄 때',
+        '필요한 것을 말하기 전에 챙겨줄 때',
+        '말에 그치지 않고 약속을 행동으로 보여줄 때'
       ],
       beware: [
-        '도움이 필요한데 외면받을 때',
-        '도움을 약속하고 행동으로 이어지지 않을 때',
-        '힘든 일을 혼자 감당하게 될 때',
-        '말로만 걱정하고 실제적인 도움은 없을 때'
+        '말만 앞서고 구체적인 도움이 없을 때',
+        '도움을 요청했는데 외면받는 느낌이 들 때',
+        '약속한 일을 차일피일 미룰 때'
       ],
-      love: [
-        '말뿐 아니라 실제적인 행동으로 나를 도와주세요',
-      ],
-      weeklyAction: '이번 주 누군가에게 "무엇을 도와드릴까요?"라고 먼저 묻고 한 가지 행동으로 돕기'
+      love: '말보다는 내 짐을 나누어 주고 현실적인 도움을 건네는 행동의 사랑입니다.',
+      weeklyAction: '주변 사람의 번거롭고 힘든 일 한 가지를 말없이 먼저 도와주기'
     },
 
     '마음형': {
       id: 'HEART',
       name: '마음형',
-      title: '④ 마음형',
-      subtitle: '"나를 생각해 준 마음과 정성이 사랑으로 느껴지는 사람"',
-      emoji: '💌',
-      tags: ['#마음형', '#정성어린 선물', '#세심함', '#추억과기억'],
+      title: '🎁 마음형',
+      subtitle: '"나를 생각하며 준비한 마음과 정성에 감동받는 사람"',
+      emoji: '🎁',
+      tags: ['#마음형', '#정성어린선물', '#기억과추억', '#손편지'],
       strengths: [
-        '작은 선물과 마음을 잘 알아봅니다.',
-        '추억과 의미를 소중하게 생각합니다.',
-        '다른 사람의 세심한 선물을 감사하게 받아들입니다.',
-        '선물에 담긴 마음을 발견합니다.'
+        '작은 선물이나 손편지에 담긴 상대의 정성과 기쁨을 깊이 알아봅니다.',
+        '나를 떠올리며 준비한 시간과 마음의 가치를 매우 소중히 여깁니다.',
+        '소소한 기념일이나 지나가는 말로 했던 취향을 기억해 주면 큰 감동을 받습니다.'
       ],
       cautions: [
-        '자신이 기대한 선물이 없으면 서운할 수 있습니다.',
-        '상대가 말이나 시간, 행동으로 하는 마음을 놓칠 수 있습니다.',
-        '선물의 크기로 사랑의 크기를 판단하지 않도록 주의할 필요가 있습니다.',
+        '선물의 물질적 가치보다 그 안에 담긴 "나를 생각한 마음"에 집중해야 합니다.',
+        '정성이 느껴지지 않는 형식적인 반응에 상처를 받을 수 있습니다.'
       ],
       community: [
-        '나를 기억하고 선물을 챙겨줄 때',
-        '생일이나 중요한 일을 기억해 줄 때',
-        '손편지나 메모를 받을 때',
-        '나를 생각하며 선물을 준비한 마음이 느껴질 때'
+        '내가 좋아하는 간식이나 소품을 깜짝 챙겨줄 때',
+        '나를 생각하며 쓴 진심 어린 메모나 편지를 받을 때',
+        '내가 좋아하는 취향을 잊지 않고 기억해 줄 때'
       ],
       beware: [
-        '중요한 날을 그냥 지나칠 때',
-        '마음 없이 형식적으로 선물을 건넬 때',
-        '정성을 들인 표현을 가볍게(당연하게) 여길 때',
-        '나를 생각한 흔적이 느껴지지 않을 때',
+        '중요한 날이나 기억을 무성의하게 지나칠 때',
+        '성의 없이 겉치레로만 응대할 때',
+        '내가 준 정성을 가볍게 여길 때'
       ],
-      love: [
-        '나를 기억하고 있다는 마음을 작은 정성(선물, 편지 등)으로 표현해주세요.'
-      ],
-      weeklyAction: '이번 주 한 사람을 생각하며 작은 메모, 간식, 또는 정성 어린 것을 준비해 전하기'
+      love: '나를 떠올리고 고민하며 준비한 정성 어린 마음과 선물로 전해지는 사랑입니다.',
+      weeklyAction: '소중한 사람의 취향을 담은 작은 선물이나 진심 어린 손메모 전달하기'
     },
 
     '친밀형': {
-      id: 'INTIMATE',
+      id: 'INTIMACY',
       name: '친밀형',
-      title: '⑤ 친밀형',
-      subtitle: '"따뜻한 존재감이 사랑이라고 믿는 사람"',
-      emoji: '🤗',
-      tags: ['#친밀형', '#따뜻한온기', '#친근한맞이', '#정서적안정감'],
+      title: '😊 친밀형',
+      subtitle: '"따뜻한 표정과 미소, 친근한 반응에서 마음이 열리는 사람"',
+      emoji: '😊',
+      tags: ['#친밀형', '#따뜻한미소', '#반가운반응', '#친근한교감'],
       strengths: [
-        '사람의 표정과 분위기를 잘 느낍니다.',
-        '따뜻한 반응에서 정서적인 안정감을 얻습니다.',
-        '상대의 기쁨과 슬픔에 자연스럽게 공감합니다.',
-        '편안하고 따뜻한 관계를 중요하게 생각합니다.'
+        '상대의 따뜻한 비언어적 표정과 반가운 눈빛에서 큰 안도감을 느낍니다.',
+        '밝은 미소와 친근하게 건네는 인사에 편안하게 마음의 문을 엽니다.',
+        '분위기를 온화하고 다정하게 만드는 능력과 정서적 교감 능력이 뛰어납니다.'
       ],
       cautions: [
-        '사람마다 편안하게 느끼는 거리와 표현 방식이 다르다는 점을 존중해야 합니다.',
-        '내가 편안하게 느끼는 표현이 상대에게는 부담스러울 수 있습니다.',
-        '상대의 반응이 차갑게 느껴진다고 해서 반드시 나를 싫어하는 것은 아닙니다.'],
+        '상대의 무표정이나 차가운 눈빛에 필요 이상으로 위축될 수 있습니다.',
+        '상대의 컨디션 저하로 인한 굳은 표정을 나 때문으로 오인하지 않는 지혜가 필요합니다.'
+      ],
       community: [
-        '환하게 웃으며 반겨줄 때.',
-        '따뜻한 눈빛으로 바라봐줄 때.',
-        '기쁜 일을 함께 기뻐해 줄 때.',
-        '악수, 하이파이브 포옹 등 상대가 편안하게 받아들일 수 있는 표현을 해줄 때.'
+        '나를 보며 환하게 웃어주고 반갑게 맞아줄 때',
+        '다정한 어조와 따뜻한 눈빛으로 반응해 줄 때',
+        '가벼운 하이파이브나 친근한 악수로 마음을 나눌 때'
       ],
       beware: [
-        '차갑거나 무관심한 반응을 보일 때',
-        '반갑지 않은 듯 대할 때',
-        '눈을 맞추지 않고 이야기할 때',
-        '원하지 않는 신체 접촉을 할 때'
+        '굳은 표정으로 차갑게 마주할 때',
+        '인사를 건넸는데 무표정하게 지나칠 때',
+        '차가운 분위기를 조율 없이 방치할 때'
       ],
-      love: [
-        '따뜻한 표정과 반응으로 나를 반겨주고 마음을 표현해 주세요.'
-      ],
-      weeklyAction: '이번 주 만나는 사람에게 먼저 미소로 인사하고, 상대가 편안해하는 방식으로 따뜻함을 표현하기'
-    },
+      love: '따뜻한 눈빛과 다정한 미소, 편안한 온기로 마음을 감싸주는 사랑입니다.',
+      weeklyAction: '오늘 만나는 사람들에게 먼저 환하고 따뜻한 미소로 인사를 건네기'
+    }
   };
 
-  // 2. 30개 문항 데이터셋 (Q1 ~ Q30) 및 채점표 매핑
+  // 2. 30가지 질문 데이터
   const QUESTIONS = [
     {
       id: 1,
-      optA: { text: '나를 생각해서 준비한 선물이나 메모를 받으면 사랑받고 있다는 느낌이 든다.', type: '마음형' },
-      optB: { text: '진심 어린 격려와 응원의 말을 들으면 사랑받고 있다는 느낌이 든다.', type: '격려형' }
+      optA: { text: "진심 어린 칭찬과 따뜻한 격려의 말을 들을 때 마음이 편안해진다.", type: '격려형' },
+      optB: { text: "나를 향해 환하게 웃어주며 반갑게 맞아줄 때 마음이 편안해진다.", type: '친밀형' }
     },
     {
       id: 2,
-      optA: { text: "어려울 때 필요한 일을 실제로 도와주면 큰 고마움을 느낀다.", type: '실천형' },
-      optB: { text: "시간을 내어 함께 있어주면 큰 고마움을 느낀다.", type: '동행형' }
+      optA: { text: "내가 힘들어할 때 직접 와서 일을 도와주면 깊이 고맙다.", type: '실천형' },
+      optB: { text: "시간을 내어 곁에 함께 있어주고 내 말을 들어주면 깊이 고맙다.", type: '동행형' }
     },
     {
       id: 3,
-      optA: { text: "반갑게 맞아주고 따뜻한 표정과 눈빛으로 반응해 주면 가까워진 느낌이 든다.", type: '친밀형' },
-      optB: { text: "마음을 알아주는 따뜻한 말을 건네주면 가까워진 느낌이 든다.", type: '격려형' }
+      optA: { text: "반갑게 맞아주고 따뜻한 표정으로 반응해 주면 친밀함이 느껴진다.", type: '친밀형' },
+      optB: { text: "용기를 주는 따뜻한 말을 건네주면 친밀함이 느껴진다.", type: '격려형' }
     },
     {
       id: 4,
-      optA: { text: "특별한 날이 아니어도 작은 선물을 받으면 마음이 따뜻해진다.", type: '마음형' },
-      optB: { text: "힘들 때 필요한 일을 함께 해결해 주면 마음이 따뜻해진다.", type: '실천형' }
+      optA: { text: "나를 생각해 마련해 준 소소한 선물을 받을 때 감동을 받는다.", type: '마음형' },
+      optB: { text: "어려운 일이 생겼을 때 함께 해결하려고 손 내밀어 줄 때 감동을 받는다.", type: '실천형' }
     },
     {
       id: 5,
-      optA: { text: "식사하거나 산책하며 함께하는 시간이 좋다.", type: '동행형' },
-      optB: { text: "따뜻하고 밝은 표정으로 반응해 주는것이 좋다.", type: '친밀형' }
+      optA: { text: "함께 산책하거나 차를 마시며 시간을 보낼 때 마음이 충만하다.", type: '동행형' },
+      optB: { text: "따뜻하고 밝은 미소로 나를 바라봐 줄 때 마음이 충만하다.", type: '친밀형' }
     },
     {
       id: 6,
-      optA: { text: "힘들 때 따뜻한 미소와 편안한 눈맞춤으로 반응해주면 위로가 된다.", type: '친밀형' },
-      optB: { text: "나를 위해 준비한 간식이나 선물을 받으면 위로가 된다.", type: '마음형' }
+      optA: { text: "힘들 때 다정한 표정과 안도감을 주는 반응을 받으면 위로가 된다.", type: '친밀형' },
+      optB: { text: "나를 위해 준비한 맛있는 간식이나 작은 정성을 받으면 위로가 된다.", type: '마음형' }
     },
     {
       id: 7,
-      optA: { text: "잘한 일을 알아보고 구체적으로 칭찬해 주면 다시 힘을 낼 수 있다.", type: '격려형' },
-      optB: { text: "힘든 일을 겪을 때 실제적인 도움을 주면 다시 힘을 낼 수 있다.", type: '실천형' }
+      optA: { text: "내가 한 일을 알아보고 구체적으로 칭찬해 주면 다시 힘이 난다.", type: '격려형' },
+      optB: { text: "내가 마주한 문제에 실질적인 도움을 주면 다시 힘이 난다.", type: '실천형' }
     },
     {
       id: 8,
-      optA: { text: "말보다 행동으로 배려해 주는 것이 사랑으로 느껴진다.", type: '실천형' },
-      optB: { text: "함께 충분한 시간을 보내주는 것이 사랑으로 느껴진다.", type: '동행형' }
+      optA: { text: "말보다는 실질적인 행동과 묵묵한 배려에서 사랑을 느낀다.", type: '실천형' },
+      optB: { text: "나에게 오롯이 집중하며 함께 시간을 보내주는 것에서 사랑을 느낀다.", type: '동행형' }
     },
     {
       id: 9,
-      optA: { text: "나를 위해 시간을 내어 함께하면 마음이 열린다.", type: '동행형' },
-      optB: { text: "나를 위해 준비한 선물을 받으면 마음이 열린다.", type: '마음형' }
+      optA: { text: "바쁜 일정 중에도 나를 위해 시간을 내어줄 때 마음의 문이 열린다.", type: '동행형' },
+      optB: { text: "나의 취향을 기억하고 준비한 작은 선물을 받을 때 마음의 문이 열린다.", type: '마음형' }
     },
     {
       id: 10,
-      optA: { text: "노력한 것을 알아주고 인정과 격려를 해주면 마음이 열린다.", type: '격려형' },
-      optB: { text: "따뜻하게 웃어주고 반갑게 대해 주면 마음이 열린다.", type: '친밀형' }
+      optA: { text: "나의 수고와 장점을 알아주고 칭찬해 줄 때 마음이 밝아진다.", type: '격려형' },
+      optB: { text: "다정하게 눈을 맞추며 친근하게 다가와 줄 때 마음이 밝아진다.", type: '친밀형' }
     },
     {
       id: 11,
-      optA: { text: "나를 생각해서 준비한 손편지나 선물이 오래 기억에 남는다.", type: '마음형' },
-      optB: { text: "어려울 때 실제로 도움을 주었던 행동이 오래 기억에 남는다.", type: '실천형' }
+      optA: { text: "나를 생각해 쓴 손편지나 메모가 오래 기억에 남는다.", type: '마음형' },
+      optB: { text: "어려울 때 묵묵히 곁에서 일을 도와준 실천이 오래 기억에 남는다.", type: '실천형' }
     },
     {
       id: 12,
-      optA: { text: "밝게 웃으며 반갑게 맞아주고 따뜻하게 표현해 주는 것이 좋다.", type: '친밀형' },
-      optB: { text: "내 이야기에 관심을 가지고 함께 시간을 보내주는 것이 좋다.", type: '동행형' }
+      optA: { text: "밝은 미소로 다정하게 대해주는 사람이 좋다.", type: '친밀형' },
+      optB: { text: "내 이야기를 귀담아들어 주며 함께 시간을 보내주는 사람이 좋다.", type: '동행형' }
     },
     {
       id: 13,
-      optA: { text: "힘들 때 누군가 곁에서 함께해 주며 이야기를 들어주면 위로가 된다.", type: '동행형' },
-      optB: { text: "힘들 때 진심 어린 응원과 격려의 말을 들으면 위로가 된다.", type: '격려형' }
+      optA: { text: "힘들 때 곁에서 차분히 대화를 나누어 주면 큰 위안이 된다.", type: '동행형' },
+      optB: { text: "힘들 때 '넌 잘해낼 수 있어'라는 응원의 말을 들으면 큰 위안이 된다.", type: '격려형' }
     },
     {
       id: 14,
-      optA: { text: "필요한 일을 먼저 알아차리고 행동으로 도와주면 깊은 고마움을 느낀다.", type: '실천형' },
-      optB: { text: "따뜻한 말과 격려로 나의 마음을 살펴주면 깊은 고마움을 느낀다.", type: '격려형' }
+      optA: { text: "내가 필요한 것을 먼저 알아차리고 행동으로 도와주면 고맙다.", type: '실천형' },
+      optB: { text: "따뜻한 말 한마디로 내 감정을 정성껏 어루만져 주면 고맙다.", type: '격려형' }
     },
     {
       id: 15,
-      optA: { text: "좋아할 만한 것을 기억하고 준비해 준 선물이 사랑으로 느껴진다.", type: '마음형' },
-      optB: { text: "반갑게 바라보고 따뜻하게 반응해 주는 것이 사랑으로 느껴진다.", type: '친밀형' }
+      optA: { text: "내가 좋아할 만한 것을 기억하고 전해주는 마음이 소중하다.", type: '마음형' },
+      optB: { text: "언제나 다정하고 환한 표정으로 반응해 주는 태도가 소중하다.", type: '친밀형' }
     },
     {
       id: 16,
-      optA: { text: "바쁜 중에도 시간을 내어주면 사랑받고 있다고 느낀다.", type: '동행형' },
-      optB: { text: "장점이나 수고를 알아보고 인정해 주면 사랑받고 있다고 느낀다.", type: '격려형' }
+      optA: { text: "바쁜 시간 속에서도 나와의 시간을 약속해 줄 때 소중함을 느낀다.", type: '동행형' },
+      optB: { text: "나의 작은 성취도 놓치지 않고 축하하고 인정해 줄 때 소중함을 느낀다.", type: '격려형' }
     },
     {
       id: 17,
-      optA: { text: "힘든 일이 있을 때 실제로 도움을 주고 함께 해결해 주면 든든하다.", type: '실천형' },
-      optB: { text: "나를 생각하며 선물이나 메모를 준비해 주면 든든하다.", type: '마음형' }
+      optA: { text: "내가 번거로워하는 일을 대신 깔끔하게 정리해 주면 든든하다.", type: '실천형' },
+      optB: { text: "나를 생각하며 준비한 귀여운 선물이나 메시지가 있으면 든든하다.", type: '마음형' }
     },
     {
       id: 18,
-      optA: { text: "자연스러운 손길처럼 편안한 표현을 받으면 친근하게 느껴진다.", type: '친밀형' },
-      optB: { text: "함께하는 시간에 집중해주면 친근하게 느껴진다.", type: '동행형' }
+      optA: { text: "자연스럽고 친근한 표정과 분위기가 나를 편안하게 해준다.", type: '친밀형' },
+      optB: { text: "다른 방해 없이 오롯이 나에게 집중해 주는 시간이 나를 편안하게 해준다.", type: '동행형' }
     },
     {
       id: 19,
-      optA: { text: "진심이 담긴 응원과 격려의 말을 들으면 다시 도전할 힘이 생긴다.", type: '격려형' },
-      optB: { text: "내가 힘든 상황에서 실제적인 도움을 받으면 다시 도전할 힘이 생긴다.", type: '실천형' }
+      optA: { text: "진심 어린 격려와 긍정적인 말을 들을 때 자신감이 생긴다.", type: '격려형' },
+      optB: { text: "내가 처한 상황에서 든든하게 현실적인 지원을 받을 때 자신감이 생긴다.", type: '실천형' }
     },
     {
       id: 20,
-      optA: { text: "따뜻하게 웃으며 반갑게 맞아주면 기분이 좋아진다.", type: '친밀형' },
-      optB: { text: "나를 위한 선물이나 간식을 받으면 기분이 좋아진다.", type: '마음형' }
+      optA: { text: "나를 보며 밝고 환하게 반응해 줄 때 기분이 좋아진다.", type: '친밀형' },
+      optB: { text: "나를 위해 정성스럽게 챙겨준 음료나 선물을 받으면 기분이 좋아진다.", type: '마음형' }
     },
     {
       id: 21,
-      optA: { text: "충분한 시간을 함께 보내는 것이 관계를 깊게 만든다고 느낀다.", type: '동행형' },
-      optB: { text: "따뜻한 말로 서로 격려하는 것이 관계를 깊게 만든다고 느낀다.", type: '격려형' }
+      optA: { text: "충분한 시간을 함께 보내며 대화하는 것이 관계의 핵심이다.", type: '동행형' },
+      optB: { text: "서로에게 긍정적이고 따뜻한 말을 건네는 것이 관계의 핵심이다.", type: '격려형' }
     },
     {
       id: 22,
-      optA: { text: "힘든 일이 있을 때 내 몫까지 함께 나누고 직접 도와주는 사람이 좋다.", type: '실천형' },
-      optB: { text: "작은 것이라도 나를 생각하며 정성껏 준비해 주는 사람이 좋다.", type: '마음형' }
+      optA: { text: "내가 부닥친 짐을 나누어 가볍게 만들어 주는 사람이 참 고맙다.", type: '실천형' },
+      optB: { text: "작은 것도 나를 기억하고 세심하게 챙겨주는 사람이 참 고맙다.", type: '마음형' }
     },
     {
       id: 23,
-      optA: { text: "환하게 웃으며 반갑게 맞아주고 따뜻하게 반응해 주면 힘이 난다.", type: '친밀형' },
-      optB: { text: "나를 위해 시간을 내어 함께 걸으며 이야기를 나누면 힘이 난다.", type: '동행형' }
+      optA: { text: "따뜻한 눈빛으로 기쁘게 맞아주는 다정함이 좋다.", type: '친밀형' },
+      optB: { text: "나와 함께 천천히 발을 맞추어 걸어가며 대화하는 것이 좋다.", type: '동행형' }
     },
     {
       id: 24,
-      optA: { text: "노력이나 성과를 알아보고 칭찬해 주는 사람이 오래 기억에 남는다.", type: '격려형' },
-      optB: { text: "어려울 때 먼저 다가와 실제로 도와주는 사람이 오래 기억에 남는다.", type: '실천형' }
+      optA: { text: "나의 노력과 수고를 정당하게 알아주는 모습에 마음이 간다.", type: '격려형' },
+      optB: { text: "말보다 먼저 행동으로 배려를 실천하는 모습에 마음이 간다.", type: '실천형' }
     },
     {
       id: 25,
-      optA: { text: "나를 생각하며 준비한 기념품이나 정성스러운 선물이 오래 기억에 남는다.", type: '마음형' },
-      optB: { text: "힘들 때 따뜻한 눈빛과 표정으로 위로해 준 순간이 오래 기억에 남는다.", type: '친밀형' }
+      optA: { text: "나를 생각해 준비한 선물과 메시지가 마음에 오래 남는다.", type: '마음형' },
+      optB: { text: "따뜻하고 반가운 반응으로 나를 마주해주던 순간이 마음에 오래 남는다.", type: '친밀형' }
     },
     {
       id: 26,
-      optA: { text: "함께 식사하거나 차를 마시며 마음을 나누는 시간이 관계를 깊게 만든다고 느낀다.", type: '동행형' },
-      optB: { text: "진심 어린 감사와 격려의 말이 관계를 깊게 만든다고 느낀다.", type: '격려형' }
+      optA: { text: "함께 음식을 나누거나 차를 마시며 여유를 갖는 시간이 소중하다.", type: '동행형' },
+      optB: { text: "서로를 향해 '고마워', '잘했어'라고 말해주는 시간이 소중하다.", type: '격려형' }
     },
     {
       id: 27,
-      optA: { text: "나를 위해 직접 행동으로 보여준 배려가 가장 고맙게 느껴진다.", type: '실천형' },
-      optB: { text: "나를 생각하며 시간과 정성을 들여 준비한 것이 가장 고맙게 느껴진다.", type: '마음형' }
+      optA: { text: "내가 할 일을 대신 챙겨서 해결해 준 행동에 깊이 감동한다.", type: '실천형' },
+      optB: { text: "시간과 정성을 들여 나를 위한 무언가를 고르고 준비한 것에 깊이 감동한다.", type: '마음형' }
     },
     {
       id: 28,
-      optA: { text: "편안한 미소와 눈맞춤, 가벼운 하이파이브�
-  function renderOtherTypes(sortedEntries) {��에서 사용)
-  let currentRankedEntries = [];  // 점수순으로 정렬된 [유형키, 점수] 배열 (다른 유형 보기에서 사용)
+      optA: { text: "편안한 미소와 다정한 어조로 건네는 대화가 편안하다.", type: '친밀형' },
+      optB: { text: "나와 약속한 시간을 소중히 여기며 지켜주는 행동이 편안하다.", type: '동행형' }
+    },
+    {
+      id: 29,
+      optA: { text: "나의 장점을 발굴하고 아낌없이 칭찬해 주는 표현이 좋다.", type: '격려형' },
+      optB: { text: "나를 기쁘게 해주려고 준비한 작은 깜짝 정성이 좋다.", type: '마음형' }
+    },
+    {
+      id: 30,
+      optA: { text: "필요할 때 망설임 없이 손길을 내밀어 주는 도움에 사랑을 느낀다.", type: '실천형' },
+      optB: { text: "언제나 한결같이 다정하고 반가운 태도로 맞이해 주는 모습에 사랑을 느낀다.", type: '친밀형' }
+    }
+  ];
+
+  // 3. 앱 상태 변수
+  let currentIndex = 0;
+  let userAnswers = []; // 각 문항별 선택 유형 기록
+  let scores = {
+    '격려형': 0,
+    '동행형': 0,
+    '실천형': 0,
+    '마음형': 0,
+    '친밀형': 0
+  };
 
   // 4. DOM 엘리먼트 참조
   const startScreen = document.getElementById('startScreen');
@@ -343,6 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const restartBtn = document.getElementById('restartBtn');
   const shareBtn = document.getElementById('shareBtn');
   const otherTypesBtn = document.getElementById('otherTypesBtn');
+
   const otherTypesModal = document.getElementById('otherTypesModal');
   const closeModalBtn = document.getElementById('closeModalBtn');
   const otherTypesList = document.getElementById('otherTypesList');
@@ -364,12 +359,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const resultCautions = document.getElementById('resultCautions');
   const resultCommunity = document.getElementById('resultCommunity');
   const resultBeware = document.getElementById('resultBeware');
+  const resultLove = document.getElementById('resultLove');
   const resultWeeklyAction = document.getElementById('resultWeeklyAction');
 
   const toastNotification = document.getElementById('toastNotification');
   const toastMessage = document.getElementById('toastMessage');
 
-  // 5. 화면 전환 메서드
+  let currentSortedRankings = [];
+
+  // 5. 화면 전환 함수
   function showScreen(screenToShow) {
     [startScreen, quizScreen, loadingScreen, resultScreen].forEach(screen => {
       if (screen === screenToShow) {
@@ -382,40 +380,32 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 6. 질문 렌더링
+  // 6. 질문 렌더링 함수
   function renderQuestion() {
     const q = QUESTIONS[currentIndex];
 
-    // 프로그레스 바 & 진행 카운트
     currentStepText.textContent = currentIndex + 1;
     const progressPercent = ((currentIndex + 1) / QUESTIONS.length) * 100;
     progressBarFill.style.width = `${progressPercent}%`;
 
-    // 질문 정보
     qCategoryBadge.textContent = `Q${q.id}`;
-    qTitle.textContent = `Q${q.id}. 나에게 더 따뜻하고 친밀하게 다가오는 모습은?`;
+    qTitle.textContent = `Q${q.id}. 나에게 더 편안하고 마음이 열리는 순간은?`;
 
     optionAText.textContent = q.optA.text;
     optionBText.textContent = q.optB.text;
 
-    // 이전 질문 버튼 표시 여부
+    // 이전 버튼 제어
     if (currentIndex > 0) {
       prevBtn.style.visibility = 'visible';
     } else {
       prevBtn.style.visibility = 'hidden';
     }
-
-    // 카드 전환 페이드 효과
-    const questionCard = document.getElementById('questionCard');
-    questionCard.classList.remove('fade-slide-in');
-    void questionCard.offsetWidth; // Trigger Reflow
-    questionCard.classList.add('fade-slide-in');
   }
 
-  // 7. 선택지 클릭 핸들러
-  function handleSelectOption(choice) {
+  // 7. 선택지 클릭 처리
+  function handleSelect(choiceKey) {
     const q = QUESTIONS[currentIndex];
-    const selectedType = choice === 'A' ? q.optA.type : q.optB.type;
+    const selectedType = choiceKey === 'A' ? q.optA.type : q.optB.type;
 
     userAnswers[currentIndex] = selectedType;
 
@@ -423,512 +413,105 @@ document.addEventListener('DOMContentLoaded', () => {
       currentIndex++;
       renderQuestion();
     } else {
-      // 30문항 선택 완료 -> 로딩 화면
-      showScreen(loadingScreen);
-      setTimeout(() => {
-        calculateAndShowResult();
-      }, 1200);
+      // 30문항 완료
+      calculateAndShowResult();
     }
   }
 
-  // 8. 결과 계산 및 결과 화면 출력
+  // 8. 점수 계산 및 결과 렌더링
   function calculateAndShowResult() {
-    // 유형별 점수 집계
-    const scores = {
-      격려형: 0,
-      동행형: 0,
-      실천형: 0,
-      마음형: 0,
-      친밀형: 0
-    };
+    // 점수 초기화
+    Object.keys(scores).forEach(k => scores[k] = 0);
 
+    // 집계
     userAnswers.forEach(type => {
       if (scores[type] !== undefined) {
         scores[type]++;
       }
     });
 
-    // 점수 내림차순 정렬 (동점일 경우 유형 정의 순서 유지)
-    const sortedEntries = Object.entries(scores).sort((a, b) => b[1] - a[1]);
-    const topTypeKey = sortedEntries[0][0];
+    // 정렬 (점수 내림차순)
+    const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+    currentSortedRankings = sorted;
 
-    // 이후 공유하기 / 다른 유형 보기에서 재사용할 수 있도록 상태 저장
-    currentRankedEntries = sortedEntries;
+    showScreen(loadingScreen);
 
-    const resultData = TYPES[topTypeKey];
-    currentResultData = resultData;
-
-    // DOM 업데이트
-    resultTitle.textContent = resultData.title;
-    resultSubtitle.textContent = resultData.subtitle;
-    resultEmojiVisual.textContent = resultData.emoji;
-
-    // 태그
-    resultTags.innerHTML = '';
-    resultData.tags.forEach(tagText => {
-      const tagSpan = document.createElement('span');
-      tagSpan.className = 'tag';
-      tagSpan.textContent = tagText;
-      resultTags.appendChild(tagSpan);
-    });
-
-    // 강점
-    resultStrengths.innerHTML = '';
-    resultData.strengths.forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = item;
-      resultStrengths.appendChild(li);
-    });
-
-    // 주의할 점
-    resultCautions.innerHTML = '';
-    resultData.cautions.forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = item;
-      resultCautions.appendChild(li);
-    });
-
-    // 이런 순간에 마음이 열립니다
-    resultCommunity.innerHTML = '';
-    resultData.community.forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = item;
-      resultCommunity.appendChild(li);
-    });
-
-    // 이런 순간에 마음이 닫힙니다
-    resultBeware.innerHTML = '';
-    resultData.beware.forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = item;
-      resultBeware.appendChild(li);
-    });
-
-    // 나에게 필요한 사랑
-    const resultLove = document.getElementById('resultLove');
-    if (resultLove) {
-      resultLove.textContent = resultData.love[0] || '';
-    }
-
-    // 이번 주 실천
-    resultWeeklyAction.textContent = resultData.weeklyAction;
-
-    // 2~5위 "다른 유형 결과" 모달 콘텐츠 준비
-    renderOtherTypes(sortedEntries);
-
-    showScreen(resultScreen);
-  }
-
-  // 공유 캡처 카드 콘텐츠 업데이트
-  function updateShareCard(data) {
-    const captureEmoji = document.getElementById('shareCaptureEmoji');
-    const captureTitle = document.getElementById('shareCaptureTitle');
-    const captureSubtitle = document.getElementById('shareCaptureSubtitle');
-    const captureTags = document.getElementById('shareCaptureTags');
-    const captureStrengthList = document.getElementById('shareCaptureStrengthList');
-    const captureLove = document.getElementById('shareCaptureLove');
-
-    if (captureEmoji) captureEmoji.textContent = data.emoji;
-    if (captureTitle) captureTitle.textContent = data.title;
-    if (captureSubtitle) captureSubtitle.textContent = data.subtitle;
-
-    if (captureTags) {
-      captureTags.innerHTML = data.tags.map(t => `<span class="tag">${t}</span>`).join('');
-    }
-    if (captureStrengthList) {
-      captureStrengthList.innerHTML = data.strengths.map(s => `<li>${s}</li>`).join('');
-    }
-    if (captureLove) {
-      captureLove.textContent = `"${data.love[0] || ''}"`;
-    }
-  }
-
-
-  function renderOtherTypes(sortedEntries) {
-    if (!otherTypesList) return;
-
-    const rankLabels = ['①', '②', '③', '④', '⑤'];
-    // 1위(대표 유형)는 이미 결과 화면 상단에 표시되므로 2~5위만 노출
-    const others = sortedEntries.slice(1);
-
-    otherTypesList.innerHTML = others.map(([typeKey, score], idx) => {
-      const t = TYPES[typeKey];
-      const rankLabel = rankLabels[idx + 1] || `${idx + 2}위`;
-
-      const tagsHTML = t.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
-      const strengthsHTML = t.strengths.map(li => `<li>${li}</li>`).join('');
-      const cautionsHTML = t.cautions.map(li => `<li>${li}</li>`).join('');
-      const communityHTML = t.community.map(li => `<li>${li}</li>`).join('');
-      const bewareHTML = t.beware.map(li => `<li>${li}</li>`).join('');
-      const loveText = t.love[0] || '';
-
-      return `
-        <details class="other-type-card">
-          <summary class="other-type-summary">
-            <span class="other-type-rank">${rankLabel}</span>
-            <span class="other-type-emoji">${t.emoji}</span>
-            <span class="other-type-headtext">
-              <span class="other-type-name">${t.name}</span>
-              <span class="other-type-sub">${t.subtitle}</span>
-            </span>
-            <span class="other-type-score">${score}/${QUESTIONS.length}</span>
-            <svg class="other-type-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path d="M6 9l6 6 6-6"/>
-            </svg>
-          </summary>
-          <div class="other-type-body">
-            <div class="result-tags">${tagsHTML}</div>
-            <div class="ot-section">
-              <h4>✨ 강점</h4>
-              <ul>${strengthsHTML}</ul>
-            </div>
-            <div class="ot-section">
-              <h4>⚠️ 주의할 점</h4>
-              <ul>${cautionsHTML}</ul>
-            </div>
-            <div class="ot-section">
-              <h4>🤝 이런 순간에 마음이 열립니다</h4>
-              <ul>${communityHTML}</ul>
-            </div>
-            <div class="ot-section">
-              <h4>⚠️ 이런 순간에 마음이 닫힙니다</h4>
-              <ul>${bewareHTML}</ul>
-            </div>
-            <div class="ot-section">
-              <h4>❤️ 필요한 사랑</h4>
-              <p>"${loveText}"</p>
-            </div>
-            <div class="ot-section">
-              <h4>🌱 이번 주 실천</h4>
-              <p>"${t.weeklyAction}"</p>
-            </div>
-          </div>
-        </details>
-      `;
-    }).join('');
-  }
-
-  // 8-2. 다른 유형 모달 열기 / 닫기
-  function openOtherTypesModal() {
-    if (!otherTypesModal) return;
-    otherTypesModal.classList.remove('hidden');
-    // 리플로우를 강제해 transition이 확실히 적용되도록 함
-    void otherTypesModal.offsetWidth;
-    otherTypesModal.classList.add('show');
-  }
-
-  function closeOtherTypesModal() {
-    if (!otherTypesModal) return;
-    otherTypesModal.classList.remove('show');
     setTimeout(() => {
-      otherTypesModal.classList.add('hidden');
-    }, 300);
+      const topTypeName = sorted[0][0];
+      const topTypeData = TYPES[topTypeName];
+
+      // 결과 화면 데이터 바인딩
+      resultTitle.textContent = topTypeData.title;
+      resultSubtitle.textContent = topTypeData.subtitle;
+      resultEmojiVisual.textContent = topTypeData.emoji;
+
+      // 태그
+      resultTags.innerHTML = topTypeData.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+
+      // 강점
+      resultStrengths.innerHTML = topTypeData.strengths.map(item => `<li>${item}</li>`).join('');
+
+      // 주의할 점
+      resultCautions.innerHTML = topTypeData.cautions.map(item => `<li>${item}</li>`).join('');
+
+      // 마음이 열리는 순간
+      resultCommunity.innerHTML = topTypeData.community.map(item => `<li>${item}</li>`).join('');
+
+      // 마음이 닫히는 순간
+      resultBeware.innerHTML = topTypeData.beware.map(item => `<li>${item}</li>`).join('');
+
+      // 사랑과 실천
+      resultLove.textContent = `"${topTypeData.love}"`;
+      resultWeeklyAction.textContent = `"${topTypeData.weeklyAction}"`;
+
+      showScreen(resultScreen);
+    }, 1200);
   }
 
-  // 9. 이전 질문 버튼 (롤백)
-  function handlePrev() {
-    if (currentIndex > 0) {
-      currentIndex--;
-      renderQuestion();
-    }
-  }
+  // 9. 모달 (2~5위 결과) 렌더링
+  function renderOtherTypesModal() {
+    otherTypesList.innerHTML = '';
 
-  // 10. 테스트 다시하기 (초기화)
-  function handleRestart() {
-    currentIndex = 0;
-    userAnswers = [];
-    showScreen(startScreen);
-  }
+    // 2위부터 5위까지
+    for (let i = 1; i < currentSortedRankings.length; i++) {
+      const [typeName, score] = currentSortedRankings[i];
+      const typeData = TYPES[typeName];
+      const percent = Math.round((score / QUESTIONS.length) * 100);
 
-  // 11. 공유하기 - Canvas API로 직접 이미지 생성
-  async function handleShare() {
-    const data = currentResultData;
-    if (!data) {
-      showToast('결과를 먼저 확인해 주세요.');
-      return;
-    }
+      const itemEl = document.createElement('div');
+      itemEl.className = 'type-rank-item';
+      itemEl.innerHTML = `
+        <div class="rank-top-bar">
+          <div class="rank-badge-name">
+            <span>${i + 1}위</span>
+            <span>${typeData.emoji} ${typeData.name}</span>
+          </div>
+          <div class="rank-score">${score}점 (${percent}%)</div>
+        </div>
+        <div class="rank-progress-track">
+          <div class="rank-progress-bar" style="width: ${percent}%;"></div>
+        </div>
+        <p class="rank-summary">${typeData.subtitle}</p>
+      `;
 
-    showToast('이미지 생성 중... ✨');
-
-    try {
-      const canvas = buildResultCanvas(data);
-      const fileName = `관계스타일_${data.name}_결과.png`;
-
-      canvas.toBlob(async (blob) => {
-        if (!blob) {
-          showToast('이미지 생성에 실패했습니다.');
-          return;
-        }
-
-        const file = new File([blob], fileName, { type: 'image/png' });
-
-        // 모바일: Web Share API로 파일 공유 시도
-        if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
-          try {
-            await navigator.share({
-              title: `나의 관계 스타일은 "${data.title}"!`,
-              text: `${data.subtitle}\n${data.tags.slice(0, 3).join(' ')}\n\nhttps://ks-view.tistory.com/`,
-              files: [file]
-            });
-            return;
-          } catch (e) {
-            if (e.name === 'AbortError') return; // 사용자 취소
-          }
-        }
-
-        // PC / 미지원 환경: 이미지 다운로드
-        downloadImage(canvas, fileName);
-      }, 'image/png');
-
-    } catch (err) {
-      console.error('Share error:', err);
-      showToast('이미지 생성 중 오류가 발생했습니다.');
-    }
-  }
-
-  // Canvas API로 결과 이미지 직접 그리기
-  function buildResultCanvas(data) {
-    const W = 720, PADDING = 56;
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-
-    // ── 1단계: 내용 줄바꿈 처리 함수 ──
-    function wrapText(text, maxWidth, lineHeight, font) {
-      ctx.font = font;
-      const words = text.split('');
-      const lines = [];
-      let line = '';
-      for (const ch of words) {
-        const test = line + ch;
-        if (ctx.measureText(test).width > maxWidth && line) {
-          lines.push(line);
-          line = ch;
-        } else {
-          line = test;
-        }
-      }
-      if (line) lines.push(line);
-      return lines;
+      otherTypesList.appendChild(itemEl);
     }
 
-    // ── 2단계: 높이 계산 ──
-    canvas.width = W;
-    canvas.height = 10; // 임시
-    ctx.font = '26px sans-serif';
-
-    const contentW = W - PADDING * 2;
-    let totalH = PADDING; // 상단 패딩
-
-    totalH += 36; // badge
-    totalH += 24; // gap
-    totalH += 80; // emoji
-    totalH += 20; // gap
-    totalH += 48; // title
-    totalH += 14; // gap
-    const subtitleLines = wrapText(data.subtitle, contentW, 32, '24px sans-serif');
-    totalH += subtitleLines.length * 32 + 16;
-    // tags
-    totalH += 36 + 20; // tags row + gap
-    // love box
-    const loveLines = wrapText(data.love[0] || '', contentW - 40, 30, '22px sans-serif');
-    totalH += 24 + loveLines.length * 30 + 24 + 20; // padding top + lines + padding bottom + gap
-    // strengths box
-    let strengthH = 36;
-    data.strengths.forEach(s => {
-      strengthH += wrapText(s, contentW - 60, 26, '20px sans-serif').length * 26 + 10;
-    });
-    totalH += strengthH + 24 + 20;
-    // footer
-    totalH += 40 + PADDING;
-
-    canvas.height = totalH;
-
-    // ── 3단계: 실제 드로잉 ──
-    // 배경 그라디언트
-    const bg = ctx.createLinearGradient(0, 0, W, totalH);
-    bg.addColorStop(0, '#0f172a');
-    bg.addColorStop(0.5, '#1e1b4b');
-    bg.addColorStop(1, '#31103f');
-    ctx.fillStyle = bg;
-    ctx.roundRect(0, 0, W, totalH, 32);
-    ctx.fill();
-
-    // 글로우 원 장식
-    const glow1 = ctx.createRadialGradient(80, 80, 0, 80, 80, 200);
-    glow1.addColorStop(0, 'rgba(138,35,135,0.4)');
-    glow1.addColorStop(1, 'rgba(138,35,135,0)');
-    ctx.fillStyle = glow1;
-    ctx.fillRect(0, 0, W, totalH);
-
-    const glow2 = ctx.createRadialGradient(W - 60, totalH - 60, 0, W - 60, totalH - 60, 220);
-    glow2.addColorStop(0, 'rgba(255,107,107,0.35)');
-    glow2.addColorStop(1, 'rgba(255,107,107,0)');
-    ctx.fillStyle = glow2;
-    ctx.fillRect(0, 0, W, totalH);
-
-    let y = PADDING;
-
-    // Badge
-    const badgeText = '✨ 관계 스타일 테스트 결과';
-    ctx.font = 'bold 22px sans-serif';
-    const bW = ctx.measureText(badgeText).width + 40;
-    const bX = (W - bW) / 2;
-    ctx.fillStyle = 'rgba(255,107,107,0.18)';
-    ctx.strokeStyle = 'rgba(255,107,107,0.4)';
-    ctx.lineWidth = 1.5;
-    ctx.beginPath(); ctx.roundRect(bX, y, bW, 36, 18); ctx.fill(); ctx.stroke();
-    ctx.fillStyle = '#ff9a9e';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(badgeText, W / 2, y + 18);
-    y += 36 + 24;
-
-    // Emoji
-    ctx.font = '72px sans-serif';
-    ctx.textAlign = 'center';
-    ctx.fillText(data.emoji, W / 2, y + 72);
-    y += 80 + 20;
-
-    // Title
-    ctx.font = 'bold 42px sans-serif';
-    const titleGrad = ctx.createLinearGradient(0, y, W, y + 48);
-    titleGrad.addColorStop(0, '#ffffff');
-    titleGrad.addColorStop(1, '#ffd1ff');
-    ctx.fillStyle = titleGrad;
-    ctx.textAlign = 'center';
-    ctx.fillText(data.title, W / 2, y + 36);
-    y += 48 + 14;
-
-    // Subtitle
-    ctx.font = '24px sans-serif';
-    ctx.fillStyle = 'rgba(255,255,255,0.72)';
-    subtitleLines.forEach(line => {
-      ctx.fillText(line, W / 2, y + 18);
-      y += 32;
-    });
-    y += 16;
-
-    // Tags
-    ctx.font = 'bold 20px sans-serif';
-    let tagX = PADDING;
-    const tagsToShow = data.tags.slice(0, 4);
-    const tagWidths = tagsToShow.map(t => ctx.measureText(t).width + 28);
-    const totalTagW = tagWidths.reduce((a, b) => a + b + 10, 0) - 10;
-    tagX = (W - totalTagW) / 2;
-    tagsToShow.forEach((tag, i) => {
-      const tw = tagWidths[i];
-      ctx.fillStyle = 'rgba(255,255,255,0.08)';
-      ctx.strokeStyle = 'rgba(255,255,255,0.18)';
-      ctx.lineWidth = 1;
-      ctx.beginPath(); ctx.roundRect(tagX, y, tw, 34, 17); ctx.fill(); ctx.stroke();
-      ctx.fillStyle = '#ffa69e';
-      ctx.textAlign = 'center';
-      ctx.fillText(tag, tagX + tw / 2, y + 17);
-      tagX += tw + 10;
-    });
-    y += 36 + 20;
-
-    // Love box
-    const loveBoxH = 24 + loveLines.length * 30 + 24;
-    ctx.fillStyle = 'rgba(244,114,182,0.12)';
-    ctx.strokeStyle = 'rgba(244,114,182,0.35)';
-    ctx.lineWidth = 1.5;
-    ctx.beginPath(); ctx.roundRect(PADDING, y, contentW, loveBoxH, 14); ctx.fill(); ctx.stroke();
-    ctx.font = 'bold 22px sans-serif';
-    ctx.fillStyle = '#fbcfe8';
-    ctx.textAlign = 'center';
-    loveLines.forEach((line, i) => {
-      ctx.fillText('"' + (i === 0 ? '' : '') + line + (i === loveLines.length - 1 ? '"' : ''), W / 2, y + 24 + i * 30 + 14);
-    });
-    y += loveBoxH + 20;
-
-    // Strengths box
-    ctx.fillStyle = 'rgba(255,255,255,0.05)';
-    ctx.strokeStyle = 'rgba(255,255,255,0.12)';
-    ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.roundRect(PADDING, y, contentW, strengthH, 14); ctx.fill(); ctx.stroke();
-    ctx.font = 'bold 22px sans-serif';
-    ctx.fillStyle = '#ffffff';
-    ctx.textAlign = 'left';
-    ctx.fillText('✨ 강점', PADDING + 20, y + 30);
-    let sy = y + 50;
-    data.strengths.forEach(s => {
-      ctx.fillStyle = '#ff6b6b';
-      ctx.font = 'bold 22px sans-serif';
-      ctx.fillText('•', PADDING + 20, sy + 14);
-      ctx.fillStyle = 'rgba(255,255,255,0.8)';
-      ctx.font = '20px sans-serif';
-      const sLines = wrapText(s, contentW - 60, 26, '20px sans-serif');
-      sLines.forEach((sl, i) => {
-        ctx.fillText(sl, PADDING + 42, sy + i * 26 + 14);
-      });
-      sy += sLines.length * 26 + 10;
-    });
-    y += strengthH + 24;
-
-    // Footer
-    ctx.font = '18px sans-serif';
-    ctx.fillStyle = 'rgba(255,255,255,0.3)';
-    ctx.textAlign = 'center';
-    ctx.fillText('https://ks-view.tistory.com/', W / 2, y + 20);
-
-    return canvas;
+    otherTypesModal.classList.remove('hidden');
+    otherTypesModal.setAttribute('aria-hidden', 'false');
   }
 
-  function downloadImage(canvas, fileName) {
-    const link = document.createElement('a');
-    link.download = fileName;
-    link.href = canvas.toDataURL('image/png');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    showToast('이미지가 저장되었습니다! 💾');
-  }
-
-  function copyTextToClipboard(text) {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(() => {
-        showToast('결과가 클립보드에 복사되었습니다! 붙여넣기로 공유해 보세요 💕');
-      }).catch(() => {
-        fallbackCopyTextToClipboard(text);
-      });
-    } else {
-      fallbackCopyTextToClipboard(text);
-    }
-  }
-
-  function fallbackCopyTextToClipboard(text) {
-    const textArea = document.createElement('textarea');
-    textArea.value = text;
-    textArea.style.top = '0';
-    textArea.style.left = '0';
-    textArea.style.position = 'fixed';
-    document.body.appendChild(textArea);
-    textArea.focus();
-    textArea.select();
-    try {
-      document.execCommand('copy');
-      showToast('결과가 클립보드에 복사되었습니다! 붙여넣기로 공유해 보세요 💕');
-    } catch (err) {
-      showToast('내용을 직접 복사해 주세요.');
-    }
-    document.body.removeChild(textArea);
-  }
-
+  // 10. 토스트 메세지 출력
   function showToast(msg) {
     toastMessage.textContent = msg;
     toastNotification.classList.remove('hidden');
-    toastNotification.classList.add('show');
 
     setTimeout(() => {
-      toastNotification.classList.remove('show');
-      setTimeout(() => {
-        toastNotification.classList.add('hidden');
-      }, 300);
+      toastNotification.classList.add('hidden');
     }, 2500);
   }
 
-  // 12. 이벤트 리스너 바인딩
+  // 11. 이벤트 리스너 등록
   startBtn.addEventListener('click', () => {
     currentIndex = 0;
     userAnswers = [];
@@ -936,27 +519,45 @@ document.addEventListener('DOMContentLoaded', () => {
     renderQuestion();
   });
 
-  prevBtn.addEventListener('click', handlePrev);
+  prevBtn.addEventListener('click', () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      renderQuestion();
+    }
+  });
 
-  optionABtn.addEventListener('click', () => handleSelectOption('A'));
-  optionBBtn.addEventListener('click', () => handleSelectOption('B'));
+  optionABtn.addEventListener('click', () => handleSelect('A'));
+  optionBBtn.addEventListener('click', () => handleSelect('B'));
 
-  restartBtn.addEventListener('click', handleRestart);
-  shareBtn.addEventListener('click', handleShare);
+  restartBtn.addEventListener('click', () => {
+    currentIndex = 0;
+    userAnswers = [];
+    showScreen(startScreen);
+  });
 
-  if (otherTypesBtn) {
-    otherTypesBtn.addEventListener('click', openOtherTypesModal);
-  }
-  if (closeModalBtn) {
-    closeModalBtn.addEventListener('click', closeOtherTypesModal);
-  }
-  if (otherTypesModal) {
-    // 배경(오버레이) 클릭 시 닫기
-    otherTypesModal.addEventListener('click', (e) => {
-      if (e.target === otherTypesModal) {
-        closeOtherTypesModal();
-      }
-    });
-  }
+  shareBtn.addEventListener('click', () => {
+    const currentUrl = window.location.href;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(currentUrl)
+        .then(() => showToast("테스트 링크가 클립보드에 복사되었습니다! 🎉"))
+        .catch(() => showToast("링크 복사에 실패했습니다. 주소창을 이용해 주세요."));
+    } else {
+      showToast("결과 링크가 복사되었습니다! 🎉");
+    }
+  });
+
+  otherTypesBtn.addEventListener('click', renderOtherTypesModal);
+
+  closeModalBtn.addEventListener('click', () => {
+    otherTypesModal.classList.add('hidden');
+    otherTypesModal.setAttribute('aria-hidden', 'true');
+  });
+
+  otherTypesModal.addEventListener('click', (e) => {
+    if (e.target === otherTypesModal) {
+      otherTypesModal.classList.add('hidden');
+      otherTypesModal.setAttribute('aria-hidden', 'true');
+    }
+  });
 
 });
