@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         '내가 한 일과 나의 존재를 알아주는 따뜻한 말 한마디에 마음이 열립니다. 나의 존재와 수고를 알아주고 따뜻한 말로 표현해 주세요.'
       ],
       weeklyAction: '이번 주 한 사람에게 구체적인 칭찬이나 격려의 말을 먼저 전해보기'
-      },
+    },
 
     '동행형': {
       id: 'COMPANION',
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
         '나와 함께 시간을 보내고, 내가 하는 이야기에 관심을 가져주세요.'
       ],
       weeklyAction: '이번 주 한 사람에게 먼저 시간을 내어 함께 식사하거나 차를 마시자고 제안하기'
-      },
+    },
 
     '실천형': {
       id: 'ACTION',
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
         '말뿐 아니라 실제적인 행동으로 나를 도와주세요',
       ],
       weeklyAction: '이번 주 누군가에게 "무엇을 도와드릴까요?"라고 먼저 묻고 한 가지 행동으로 돕기'
-      },
+    },
 
     '마음형': {
       id: 'HEART',
@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
         '나를 기억하고 있다는 마음을 작은 정성(선물, 편지 등)으로 표현해주세요.'
       ],
       weeklyAction: '이번 주 한 사람을 생각하며 작은 메모, 간식, 또는 정성 어린 것을 준비해 전하기'
-      },
+    },
 
     '친밀형': {
       id: 'INTIMATE',
@@ -186,162 +186,162 @@ document.addEventListener('DOMContentLoaded', () => {
         '따뜻한 표정과 반응으로 나를 반겨주고 마음을 표현해 주세요.'
       ],
       weeklyAction: '이번 주 만나는 사람에게 먼저 미소로 인사하고, 상대가 편안해하는 방식으로 따뜻함을 표현하기'
-      },
+    },
   };
 
   // 2. 30개 문항 데이터셋 (Q1 ~ Q30) 및 채점표 매핑
-const QUESTIONS = [
-  {
-    id: 1,
-    optA: { text: '나를 생각해서 준비한 선물이나 메모를 받으면 사랑받고 있다는 느낌이 든다.', type: '마음형' },
-    optB: { text: '진심 어린 격려와 응원의 말을 들으면 사랑받고 있다는 느낌이 든다.', type: '격려형' }
-  },
-  {
-    id: 2,
-    optA: { text: "어려울 때 필요한 일을 실제로 도와주면 큰 고마움을 느낀다.", type: '실천형' },
-    optB: { text: "시간을 내어 함께 있어주면 큰 고마움을 느낀다.", type: '동행형' }
-  },
-  {
-    id: 3,
-    optA: { text: "반갑게 맞아주고 따뜻한 표정과 눈빛으로 반응해 주면 가까워진 느낌이 든다.", type: '친밀형' },
-    optB: { text: "마음을 알아주는 따뜻한 말을 건네주면 가까워진 느낌이 든다.", type: '격려형' }
-  },
-  {
-    id: 4,
-    optA: { text: "특별한 날이 아니어도 작은 선물을 받으면 마음이 따뜻해진다.", type: '마음형' },
-    optB: { text: "힘들 때 필요한 일을 함께 해결해 주면 마음이 따뜻해진다.", type: '실천형' }
-  },
-  {
-    id: 5,
-    optA: { text: "식사하거나 산책하며 함께하는 시간이 좋다.", type: '동행형' },
-    optB: { text: "따뜻하고 밝은 표정으로 반응해 주는것이 좋다.", type: '친밀형' }
-  },
-  {
-    id: 6,
-    optA: { text: "힘들 때 따뜻한 미소와 편안한 눈맞춤으로 반응해주면 위로가 된다.", type: '친밀형' },
-    optB: { text: "나를 위해 준비한 간식이나 선물을 받으면 위로가 된다.", type: '마음형' }
-  },
-  {
-    id: 7,
-    optA: { text: "잘한 일을 알아보고 구체적으로 칭찬해 주면 다시 힘을 낼 수 있다.", type: '격려형' },
-    optB: { text: "힘든 일을 겪을 때 실제적인 도움을 주면 다시 힘을 낼 수 있다.", type: '실천형' }
-  },
-  {
-    id: 8,
-    optA: { text: "말보다 행동으로 배려해 주는 것이 사랑으로 느껴진다.", type: '실천형' },
-    optB: { text: "함께 충분한 시간을 보내주는 것이 사랑으로 느껴진다.", type: '동행형' }
-  },
-  {
-    id: 9,
-    optA: { text: "나를 위해 시간을 내어 함께하면 마음이 열린다.", type: '동행형' },
-    optB: { text: "나를 위해 준비한 선물을 받으면 마음이 열린다.", type: '마음형' }
-  },
-  {
-    id: 10,
-    optA: { text: "노력한 것을 알아주고 인정과 격려를 해주면 마음이 열린다.", type: '격려형' },
-    optB: { text: "따뜻하게 웃어주고 반갑게 대해 주면 마음이 열린다.", type: '친밀형' }
-  },
-  {
-    id: 11,
-    optA: { text: "나를 생각해서 준비한 손편지나 선물이 오래 기억에 남는다.", type: '마음형' },
-    optB: { text: "어려울 때 실제로 도움을 주었던 행동이 오래 기억에 남는다.", type: '실천형' }
-  },
-  {
-    id: 12,
-    optA: { text: "밝게 웃으며 반갑게 맞아주고 따뜻하게 표현해 주는 것이 좋다.", type: '친밀형' },
-    optB: { text: "내 이야기에 관심을 가지고 함께 시간을 보내주는 것이 좋다.", type: '동행형' }
-  },
-  {
-    id: 13,
-    optA: { text: "힘들 때 누군가 곁에서 함께해 주며 이야기를 들어주면 위로가 된다.", type: '동행형' },
-    optB: { text: "힘들 때 진심 어린 응원과 격려의 말을 들으면 위로가 된다.", type: '격려형' }
-  },
-  {
-    id: 14,
-    optA: { text: "필요한 일을 먼저 알아차리고 행동으로 도와주면 깊은 고마움을 느낀다.", type: '실천형' },
-    optB: { text: "따뜻한 말과 격려로 나의 마음을 살펴주면 깊은 고마움을 느낀다.", type: '격려형' }
-  },
-  {
-    id: 15,
-    optA: { text: "좋아할 만한 것을 기억하고 준비해 준 선물이 사랑으로 느껴진다.", type: '마음형' },
-    optB: { text: "반갑게 바라보고 따뜻하게 반응해 주는 것이 사랑으로 느껴진다.", type: '친밀형' }
-  },
-  {
-    id: 16,
-    optA: { text: "바쁜 중에도 시간을 내어주면 사랑받고 있다고 느낀다.", type: '동행형' },
-    optB: { text: "장점이나 수고를 알아보고 인정해 주면 사랑받고 있다고 느낀다.", type: '격려형' }
-  },
-  {
-    id: 17,
-    optA: { text: "힘든 일이 있을 때 실제로 도움을 주고 함께 해결해 주면 든든하다.", type: '실천형' },
-    optB: { text: "나를 생각하며 선물이나 메모를 준비해 주면 든든하다.", type: '마음형' }
-  },
-  {
-    id: 18,
-    optA: { text: "자연스러운 손길처럼 편안한 표현을 받으면 친근하게 느껴진다.", type: '친밀형' },
-    optB: { text: "함께하는 시간에 집중해주면 친근하게 느껴진다.", type: '동행형' }
-  },
-  {
-    id: 19,
-    optA: { text: "진심이 담긴 응원과 격려의 말을 들으면 다시 도전할 힘이 생긴다.", type: '격려형' },
-    optB: { text: "내가 힘든 상황에서 실제적인 도움을 받으면 다시 도전할 힘이 생긴다.", type: '실천형' }
-  },
-  {
-    id: 20,
-    optA: { text: "따뜻하게 웃으며 반갑게 맞아주면 기분이 좋아진다.", type: '친밀형' },
-    optB: { text: "나를 위한 선물이나 간식을 받으면 기분이 좋아진다.", type: '마음형' }
-  },
-  {
-    id: 21,
-    optA: { text: "충분한 시간을 함께 보내는 것이 관계를 깊게 만든다고 느낀다.", type: '동행형' },
-    optB: { text: "따뜻한 말로 서로 격려하는 것이 관계를 깊게 만든다고 느낀다.", type: '격려형' }
-  },
-  {
-    id: 22,
-    optA: { text: "힘든 일이 있을 때 내 몫까지 함께 나누고 직접 도와주는 사람이 좋다.", type: '실천형' },
-    optB: { text: "작은 것이라도 나를 생각하며 정성껏 준비해 주는 사람이 좋다.", type: '마음형' }
-  },
-  {
-    id: 23,
-    optA: { text: "환하게 웃으며 반갑게 맞아주고 따뜻하게 반응해 주면 힘이 난다.", type: '친밀형' },
-    optB: { text: "나를 위해 시간을 내어 함께 걸으며 이야기를 나누면 힘이 난다.", type: '동행형' }
-  },
-  {
-    id: 24,
-    optA: { text: "노력이나 성과를 알아보고 칭찬해 주는 사람이 오래 기억에 남는다.", type: '격려형' },
-    optB: { text: "어려울 때 먼저 다가와 실제로 도와주는 사람이 오래 기억에 남는다.", type: '실천형' }
-  },
-  {
-    id: 25,
-    optA: { text: "나를 생각하며 준비한 기념품이나 정성스러운 선물이 오래 기억에 남는다.", type: '마음형' },
-    optB: { text: "힘들 때 따뜻한 눈빛과 표정으로 위로해 준 순간이 오래 기억에 남는다.", type: '친밀형' }
-  },
-  {
-    id: 26,
-    optA: { text: "함께 식사하거나 차를 마시며 마음을 나누는 시간이 관계를 깊게 만든다고 느낀다.", type: '동행형' },
-    optB: { text: "진심 어린 감사와 격려의 말이 관계를 깊게 만든다고 느낀다.", type: '격려형' }
-  },
-  {
-    id: 27,
-    optA: { text: "나를 위해 직접 행동으로 보여준 배려가 가장 고맙게 느껴진다.", type: '실천형' },
-    optB: { text: "나를 생각하며 시간과 정성을 들여 준비한 것이 가장 고맙게 느껴진다.", type: '마음형' }
-  },
-  {
-    id: 28,
-    optA: { text: "편안한 미소와 눈맞춤, 가벼운 하이파이브같은 표현이 친근하게 느껴진다.", type: '친밀형' },
-    optB: { text: "산책하거나 차를 마시며 함께 시간을 보낸 사람이 친근하게 느껴진다.", type: '동행형' }
-  },
-  {
-    id: 29,
-    optA: { text: "힘들 때 진심 어린 응원과 격려를 받으면 내가 소중한 사람이라는 생각이 든다.", type: '격려형' },
-    optB: { text: "힘들 때 필요한 일을 함께 해결해 주면 내가 소중한 사람이라는 생각이 든다.", type: '실천형' }
-  },
-  {
-    id: 30,
-    optA: { text: "나를 위해 준비한 간식이나 물건에서 나를 생각해 준 마음이 느껴진다.", type: '마음형' },
-    optB: { text: "따뜻하게 웃어주고 반갑게 맞아주는 모습에서 나를 향한 마음이 느껴진다.", type: '친밀형' }
-  }
-];
+  const QUESTIONS = [
+    {
+      id: 1,
+      optA: { text: '나를 생각해서 준비한 선물이나 메모를 받으면 사랑받고 있다는 느낌이 든다.', type: '마음형' },
+      optB: { text: '진심 어린 격려와 응원의 말을 들으면 사랑받고 있다는 느낌이 든다.', type: '격려형' }
+    },
+    {
+      id: 2,
+      optA: { text: "어려울 때 필요한 일을 실제로 도와주면 큰 고마움을 느낀다.", type: '실천형' },
+      optB: { text: "시간을 내어 함께 있어주면 큰 고마움을 느낀다.", type: '동행형' }
+    },
+    {
+      id: 3,
+      optA: { text: "반갑게 맞아주고 따뜻한 표정과 눈빛으로 반응해 주면 가까워진 느낌이 든다.", type: '친밀형' },
+      optB: { text: "마음을 알아주는 따뜻한 말을 건네주면 가까워진 느낌이 든다.", type: '격려형' }
+    },
+    {
+      id: 4,
+      optA: { text: "특별한 날이 아니어도 작은 선물을 받으면 마음이 따뜻해진다.", type: '마음형' },
+      optB: { text: "힘들 때 필요한 일을 함께 해결해 주면 마음이 따뜻해진다.", type: '실천형' }
+    },
+    {
+      id: 5,
+      optA: { text: "식사하거나 산책하며 함께하는 시간이 좋다.", type: '동행형' },
+      optB: { text: "따뜻하고 밝은 표정으로 반응해 주는것이 좋다.", type: '친밀형' }
+    },
+    {
+      id: 6,
+      optA: { text: "힘들 때 따뜻한 미소와 편안한 눈맞춤으로 반응해주면 위로가 된다.", type: '친밀형' },
+      optB: { text: "나를 위해 준비한 간식이나 선물을 받으면 위로가 된다.", type: '마음형' }
+    },
+    {
+      id: 7,
+      optA: { text: "잘한 일을 알아보고 구체적으로 칭찬해 주면 다시 힘을 낼 수 있다.", type: '격려형' },
+      optB: { text: "힘든 일을 겪을 때 실제적인 도움을 주면 다시 힘을 낼 수 있다.", type: '실천형' }
+    },
+    {
+      id: 8,
+      optA: { text: "말보다 행동으로 배려해 주는 것이 사랑으로 느껴진다.", type: '실천형' },
+      optB: { text: "함께 충분한 시간을 보내주는 것이 사랑으로 느껴진다.", type: '동행형' }
+    },
+    {
+      id: 9,
+      optA: { text: "나를 위해 시간을 내어 함께하면 마음이 열린다.", type: '동행형' },
+      optB: { text: "나를 위해 준비한 선물을 받으면 마음이 열린다.", type: '마음형' }
+    },
+    {
+      id: 10,
+      optA: { text: "노력한 것을 알아주고 인정과 격려를 해주면 마음이 열린다.", type: '격려형' },
+      optB: { text: "따뜻하게 웃어주고 반갑게 대해 주면 마음이 열린다.", type: '친밀형' }
+    },
+    {
+      id: 11,
+      optA: { text: "나를 생각해서 준비한 손편지나 선물이 오래 기억에 남는다.", type: '마음형' },
+      optB: { text: "어려울 때 실제로 도움을 주었던 행동이 오래 기억에 남는다.", type: '실천형' }
+    },
+    {
+      id: 12,
+      optA: { text: "밝게 웃으며 반갑게 맞아주고 따뜻하게 표현해 주는 것이 좋다.", type: '친밀형' },
+      optB: { text: "내 이야기에 관심을 가지고 함께 시간을 보내주는 것이 좋다.", type: '동행형' }
+    },
+    {
+      id: 13,
+      optA: { text: "힘들 때 누군가 곁에서 함께해 주며 이야기를 들어주면 위로가 된다.", type: '동행형' },
+      optB: { text: "힘들 때 진심 어린 응원과 격려의 말을 들으면 위로가 된다.", type: '격려형' }
+    },
+    {
+      id: 14,
+      optA: { text: "필요한 일을 먼저 알아차리고 행동으로 도와주면 깊은 고마움을 느낀다.", type: '실천형' },
+      optB: { text: "따뜻한 말과 격려로 나의 마음을 살펴주면 깊은 고마움을 느낀다.", type: '격려형' }
+    },
+    {
+      id: 15,
+      optA: { text: "좋아할 만한 것을 기억하고 준비해 준 선물이 사랑으로 느껴진다.", type: '마음형' },
+      optB: { text: "반갑게 바라보고 따뜻하게 반응해 주는 것이 사랑으로 느껴진다.", type: '친밀형' }
+    },
+    {
+      id: 16,
+      optA: { text: "바쁜 중에도 시간을 내어주면 사랑받고 있다고 느낀다.", type: '동행형' },
+      optB: { text: "장점이나 수고를 알아보고 인정해 주면 사랑받고 있다고 느낀다.", type: '격려형' }
+    },
+    {
+      id: 17,
+      optA: { text: "힘든 일이 있을 때 실제로 도움을 주고 함께 해결해 주면 든든하다.", type: '실천형' },
+      optB: { text: "나를 생각하며 선물이나 메모를 준비해 주면 든든하다.", type: '마음형' }
+    },
+    {
+      id: 18,
+      optA: { text: "자연스러운 손길처럼 편안한 표현을 받으면 친근하게 느껴진다.", type: '친밀형' },
+      optB: { text: "함께하는 시간에 집중해주면 친근하게 느껴진다.", type: '동행형' }
+    },
+    {
+      id: 19,
+      optA: { text: "진심이 담긴 응원과 격려의 말을 들으면 다시 도전할 힘이 생긴다.", type: '격려형' },
+      optB: { text: "내가 힘든 상황에서 실제적인 도움을 받으면 다시 도전할 힘이 생긴다.", type: '실천형' }
+    },
+    {
+      id: 20,
+      optA: { text: "따뜻하게 웃으며 반갑게 맞아주면 기분이 좋아진다.", type: '친밀형' },
+      optB: { text: "나를 위한 선물이나 간식을 받으면 기분이 좋아진다.", type: '마음형' }
+    },
+    {
+      id: 21,
+      optA: { text: "충분한 시간을 함께 보내는 것이 관계를 깊게 만든다고 느낀다.", type: '동행형' },
+      optB: { text: "따뜻한 말로 서로 격려하는 것이 관계를 깊게 만든다고 느낀다.", type: '격려형' }
+    },
+    {
+      id: 22,
+      optA: { text: "힘든 일이 있을 때 내 몫까지 함께 나누고 직접 도와주는 사람이 좋다.", type: '실천형' },
+      optB: { text: "작은 것이라도 나를 생각하며 정성껏 준비해 주는 사람이 좋다.", type: '마음형' }
+    },
+    {
+      id: 23,
+      optA: { text: "환하게 웃으며 반갑게 맞아주고 따뜻하게 반응해 주면 힘이 난다.", type: '친밀형' },
+      optB: { text: "나를 위해 시간을 내어 함께 걸으며 이야기를 나누면 힘이 난다.", type: '동행형' }
+    },
+    {
+      id: 24,
+      optA: { text: "노력이나 성과를 알아보고 칭찬해 주는 사람이 오래 기억에 남는다.", type: '격려형' },
+      optB: { text: "어려울 때 먼저 다가와 실제로 도와주는 사람이 오래 기억에 남는다.", type: '실천형' }
+    },
+    {
+      id: 25,
+      optA: { text: "나를 생각하며 준비한 기념품이나 정성스러운 선물이 오래 기억에 남는다.", type: '마음형' },
+      optB: { text: "힘들 때 따뜻한 눈빛과 표정으로 위로해 준 순간이 오래 기억에 남는다.", type: '친밀형' }
+    },
+    {
+      id: 26,
+      optA: { text: "함께 식사하거나 차를 마시며 마음을 나누는 시간이 관계를 깊게 만든다고 느낀다.", type: '동행형' },
+      optB: { text: "진심 어린 감사와 격려의 말이 관계를 깊게 만든다고 느낀다.", type: '격려형' }
+    },
+    {
+      id: 27,
+      optA: { text: "나를 위해 직접 행동으로 보여준 배려가 가장 고맙게 느껴진다.", type: '실천형' },
+      optB: { text: "나를 생각하며 시간과 정성을 들여 준비한 것이 가장 고맙게 느껴진다.", type: '마음형' }
+    },
+    {
+      id: 28,
+      optA: { text: "편안한 미소와 눈맞춤, 가벼운 하이파이브같은 표현이 친근하게 느껴진다.", type: '친밀형' },
+      optB: { text: "산책하거나 차를 마시며 함께 시간을 보낸 사람이 친근하게 느껴진다.", type: '동행형' }
+    },
+    {
+      id: 29,
+      optA: { text: "힘들 때 진심 어린 응원과 격려를 받으면 내가 소중한 사람이라는 생각이 든다.", type: '격려형' },
+      optB: { text: "힘들 때 필요한 일을 함께 해결해 주면 내가 소중한 사람이라는 생각이 든다.", type: '실천형' }
+    },
+    {
+      id: 30,
+      optA: { text: "나를 위해 준비한 간식이나 물건에서 나를 생각해 준 마음이 느껴진다.", type: '마음형' },
+      optB: { text: "따뜻하게 웃어주고 반갑게 맞아주는 모습에서 나를 향한 마음이 느껴진다.", type: '친밀형' }
+    }
+  ];
 
   // 3. 상태 변수 (State)
   let currentIndex = 0;
@@ -522,19 +522,10 @@ const QUESTIONS = [
     });
 
     // 나에게 필요한 사랑
-   const resultLove = document.getElementById('resultLove');
-   if (resultLove) {
-     resultLove.innerHTML = '';
-     resultLove.style.listStyle = 'none';
-     resultLove.style.padding = '0';
-     resultLove.style.textAlign = 'center';
-
-     resultData.love.forEach(item => {
-       const li = document.createElement('li');
-       li.textContent = item;
-       resultLove.appendChild(li);
-     });
-   }
+    const resultLove = document.getElementById('resultLove');
+    if (resultLove) {
+      resultLove.textContent = resultData.love[0] || '';
+    }
 
     // 이번 주 실천
     resultWeeklyAction.textContent = resultData.weeklyAction;
@@ -542,10 +533,37 @@ const QUESTIONS = [
     // 2~5위 "다른 유형 결과" 모달 콘텐츠 준비
     renderOtherTypes(sortedEntries);
 
+    // 공유 캡처 카드 업데이트
+    updateShareCard(resultData);
+
     showScreen(resultScreen);
   }
 
-  // 8-1. 2~5위 다른 유형 결과 목록 렌더링 (아코디언 카드)
+  // 공유 캡처 카드 콘텐츠 업데이트
+  function updateShareCard(data) {
+    const captureEmoji = document.getElementById('shareCaptureEmoji');
+    const captureTitle = document.getElementById('shareCaptureTitle');
+    const captureSubtitle = document.getElementById('shareCaptureSubtitle');
+    const captureTags = document.getElementById('shareCaptureTags');
+    const captureStrengthList = document.getElementById('shareCaptureStrengthList');
+    const captureLove = document.getElementById('shareCaptureLove');
+
+    if (captureEmoji) captureEmoji.textContent = data.emoji;
+    if (captureTitle) captureTitle.textContent = data.title;
+    if (captureSubtitle) captureSubtitle.textContent = data.subtitle;
+
+    if (captureTags) {
+      captureTags.innerHTML = data.tags.map(t => `<span class="tag">${t}</span>`).join('');
+    }
+    if (captureStrengthList) {
+      captureStrengthList.innerHTML = data.strengths.map(s => `<li>${s}</li>`).join('');
+    }
+    if (captureLove) {
+      captureLove.textContent = `"${data.love[0] || ''}"` ;
+    }
+  }
+
+
   function renderOtherTypes(sortedEntries) {
     if (!otherTypesList) return;
 
@@ -642,35 +660,85 @@ const QUESTIONS = [
     showScreen(startScreen);
   }
 
-  // 11. 공유하기 (내 결과 내용을 담아 공유)
-  function handleShare() {
-    const shareUrl = window.location.href;
+  // 11. 공유하기 - 이미지 캡처 후 공유
+  async function handleShare() {
     const data = currentResultData;
-
-    // 결과가 아직 없다면(예외 상황) 링크만 공유
-    const shareTitle = data
-      ? `나의 관계 스타일은 "${data.title} ${data.name}"!`
-      : '관계 스타일 테스트';
-
-    const shareText = data
-      ? `${data.subtitle}\n${data.tags.slice(0, 3).join(' ')}\n\n나의 관계 스타일 테스트 결과를 확인해보세요 👇`
-      : '나는 어떤 방식으로 다가올 때 편안할까요? 관계 스타일 테스트를 해보세요!';
-
-    // 1) Web Share API 지원 시 (모바일 브라우저 등) - 카카오톡/문자/메일 등으로 바로 공유
-    if (navigator.share) {
-      navigator.share({
-        title: shareTitle,
-        text: shareText,
-        url: shareUrl
-      }).catch(() => {
-        // 사용자가 공유를 취소한 경우 등은 별도 처리하지 않음
-      });
+    if (!data) {
+      showToast('결과를 먼저 확인해 주세요.');
       return;
     }
 
-    // 2) 미지원 브라우저: 결과 내용 + 링크를 클립보드에 복사
-    const clipboardText = `${shareTitle}\n${shareText}\n${shareUrl}`;
-    copyTextToClipboard(clipboardText);
+    const captureEl = document.getElementById('shareCaptureCard');
+    if (!captureEl) {
+      showToast('공유 카드를 찾을 수 없습니다.');
+      return;
+    }
+
+    showToast('이미지 생성 중... ✨');
+
+    // 캡처를 위해 요소를 잠시 화면에 표시
+    captureEl.style.top = '-9999px';
+    captureEl.style.left = '0';
+    captureEl.style.zIndex = '9999';
+    captureEl.style.position = 'fixed';
+
+    try {
+      const canvas = await html2canvas(captureEl, {
+        backgroundColor: null,
+        scale: 2,
+        useCORS: true,
+        logging: false,
+        width: captureEl.offsetWidth,
+        height: captureEl.offsetHeight
+      });
+
+      captureEl.style.top = '-9999px';
+      captureEl.style.zIndex = '-1';
+
+      canvas.toBlob(async (blob) => {
+        if (!blob) {
+          showToast('이미지 생성에 실패했습니다.');
+          return;
+        }
+
+        const fileName = `관계스타일_${data.name}_결과.png`;
+        const file = new File([blob], fileName, { type: 'image/png' });
+
+        // Web Share API로 파일 공유 시도 (모바일)
+        if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+          try {
+            await navigator.share({
+              title: `나의 관계 스타일은 "${data.title}"!`,
+              text: `${data.subtitle}\n${data.tags.slice(0, 3).join(' ')}\n\n나의 관계 스타일 테스트 결과를 확인해보세요 👇\nhttps://ks-view.tistory.com/`,
+              files: [file]
+            });
+            return;
+          } catch (e) {
+            if (e.name !== 'AbortError') {
+              // 파일 공유 실패 시 이미지 다운로드로 대체
+              downloadImage(canvas, fileName);
+            }
+            return;
+          }
+        }
+
+        // 미지원 환경: 이미지 다운로드
+        downloadImage(canvas, fileName);
+      }, 'image/png');
+
+    } catch (err) {
+      captureEl.style.top = '-9999px';
+      captureEl.style.zIndex = '-1';
+      showToast('이미지 생성 중 오류가 발생했습니다.');
+    }
+  }
+
+  function downloadImage(canvas, fileName) {
+    const link = document.createElement('a');
+    link.download = fileName;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+    showToast('이미지가 저장되었습니다! 💾');
   }
 
   function copyTextToClipboard(text) {
